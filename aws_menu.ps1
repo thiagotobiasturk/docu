@@ -20,21 +20,15 @@ function List-Lambdas {
     } else {
         aws lambda list-functions --output $outputFormat
     }
+
+    # Prompt to exit or continue
+    $exitOption = Read-Host "Press any key to continue or type 'exit' to exit"
+    if ($exitOption -eq "exit") { exit }
 }
 
 # Function to list APIs from API Gateway
 function List-APIs {
-    Write-Host "How would you like to display the APIs?"
-    Write-Host "1 - JSON"
-    Write-Host "2 - Table"
-    $formatOption = Read-Host "Choose an option"
-
-    # Set the output format based on user input
-    switch ($formatOption) {
-        1 { $outputFormat = "json" }
-        2 { $outputFormat = "table" }
-        default { Write-Host "Invalid option. Defaulting to JSON."; $outputFormat = "json" }
-    }
+    Write-Host "Displaying APIs in JSON format."
 
     # Ask if they want to specify a region
     $regionOption = Read-Host "Do you want to filter by a region? (y/n)"
@@ -45,9 +39,9 @@ function List-APIs {
         $apiOption = Read-Host "Choose an option"
 
         if ($apiOption -eq "1") {
-            aws apigateway get-rest-apis --output $outputFormat --region $region
+            aws apigateway get-rest-apis --output json --region $region
         } elseif ($apiOption -eq "2") {
-            aws apigatewayv2 get-apis --output $outputFormat --region $region
+            aws apigatewayv2 get-apis --output json --region $region
         } else {
             Write-Host "Invalid option for API type."
         }
@@ -57,13 +51,17 @@ function List-APIs {
         $apiOption = Read-Host "Choose an option"
 
         if ($apiOption -eq "1") {
-            aws apigateway get-rest-apis --output $outputFormat
+            aws apigateway get-rest-apis --output json
         } elseif ($apiOption -eq "2") {
-            aws apigatewayv2 get-apis --output $outputFormat
+            aws apigatewayv2 get-apis --output json
         } else {
             Write-Host "Invalid option for API type."
         }
     }
+
+    # Prompt to exit or continue
+    $exitOption = Read-Host "Press any key to continue or type 'exit' to exit"
+    if ($exitOption -eq "exit") { exit }
 }
 
 # Main menu
