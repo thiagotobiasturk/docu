@@ -1,18 +1,16 @@
-# Function to list Lambda functions
+
 function List-Lambdas {
     Write-Host "How would you like to display the Lambdas?"
     Write-Host "1 - JSON"
     Write-Host "2 - Table"
     $formatOption = Read-Host "Choose an option"
 
-    # Set the output format based on user input
     switch ($formatOption) {
         1 { $outputFormat = "json" }
         2 { $outputFormat = "table" }
         default { Write-Host "Invalid option. Defaulting to JSON."; $outputFormat = "json" }
     }
 
-    # Ask if they want to specify a region
     $regionOption = Read-Host "Do you want to filter by a region? (y/n)"
     if ($regionOption -eq "y") {
         $region = Read-Host "Enter the AWS region (e.g., us-east-1)"
@@ -21,16 +19,13 @@ function List-Lambdas {
         aws lambda list-functions --output $outputFormat
     }
 
-    # Prompt to exit or continue
     $exitOption = Read-Host "Press any key to continue or type 'exit' to exit"
     if ($exitOption -eq "exit") { exit }
 }
 
-# Function to list APIs from API Gateway
 function List-APIs {
     Write-Host "Displaying APIs in JSON format."
 
-    # Ask if they want to specify a region
     $regionOption = Read-Host "Do you want to filter by a region? (y/n)"
     if ($regionOption -eq "y") {
         $region = Read-Host "Enter the AWS region (e.g., us-east-1)"
@@ -59,12 +54,10 @@ function List-APIs {
         }
     }
 
-    # Prompt to exit or continue
     $exitOption = Read-Host "Press any key to continue or type 'exit' to exit"
     if ($exitOption -eq "exit") { exit }
 }
 
-# Main menu
 while ($true) {
     Write-Host "======================="
     Write-Host " AWS CLI Utility Menu"
