@@ -85,3 +85,9 @@ while true; do
         *) echo "Invalid option, please choose 1, 2, or 3." ;;
     esac
 done
+
+
+variable "client_name" {
+  description = "The name of the client"
+  type        = string
+}
