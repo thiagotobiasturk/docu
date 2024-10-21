@@ -1,0 +1,25 @@
+version: 2
+registries:
+  artifactory:
+    type: nuget-feed
+    url: https://artifactory.fis.dev/artifactory/api/nuget/v3/investran-nuget-dev
+    username: ${{secrets.ARTIFACTORY_USER}}
+    password: ${{secrets.ARTIFACTORY_PASSWORD}}
+updates:
+  - package-ecosystem: "nuget"
+    registries: "*"
+    directories:
+       - "*/FIS.Investran.Suite.*"  
+    open-pull-requests-limit: 20
+    schedule:
+      interval: "daily"  
+    groups:
+      production-projects:
+        patterns:
+          - "*Handler.NetCore"  
+          - "*Security.Services"
+          - "*Tokens.Jwt.NetStandard"
+      test-projects:
+        patterns:
+          - "*UnitTests"   
+          - "*Tests"
