@@ -1,6 +1,5 @@
 # docu
 
-## Postman
-[Postman](postman/postman.md)
-## Qa Manual
 [Qa Manual](QaManual/QaManual.md)
+---
+[Postman](postman/postman.md)
