@@ -4,4 +4,4 @@
 ---
 [Postman](postman/postman.md)
 ---
-[Thiago Curriulum Guide](Thiago Curriculum Guide.pdf)
+[Thiago Curriulum Guide](ThiagoCurriculumGuide.pdf)
