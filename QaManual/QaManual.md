@@ -118,6 +118,80 @@ A diferencia de la caja negra, las pruebas de caja blanca implican el conocimien
 
 Son pruebas que buscan evaluar qué tan fácil es para los usuarios interactuar con la aplicación. El enfoque está en la experiencia del usuario, la interfaz, la navegación y la accesibilidad.
 
+# Reporte de Bugs
+
+Los "datos de prueba" en un reporte de bug son información crucial que ayuda a los desarrolladores y testers a reproducir y entender el problema. Para un bug en una aplicación web, los datos de prueba pueden incluir varios elementos. A continuación se detallan algunos de los más importantes:
+
+## 1. Entorno de Prueba
+- **Sistema Operativo:** Especificar el sistema operativo en el que se está probando (por ejemplo, Windows 10, macOS Monterey, Ubuntu 20.04).
+- **Navegador:** Indicar el navegador y su versión (por ejemplo, Google Chrome 116.0, Firefox 104.0).
+- **Resolución de Pantalla:** Proporcionar la resolución de pantalla utilizada durante la prueba (por ejemplo, 1920x1080).
+- **Conexión a Internet:** Mencionar el tipo de conexión (por ejemplo, Wi-Fi, 4G) y su velocidad, si es relevante.
+
+## 2. Pasos para Reproducir el Bug
+Incluir los pasos detallados que se siguieron para encontrar el bug. Esto es fundamental para que otros puedan replicar el problema.
+
+## 3. Datos de Entrada
+- **Datos Utilizados:** Incluir información sobre los datos que se ingresaron en la aplicación, como nombres de usuario, contraseñas, formularios completados, etc.
+- **Configuración del Sistema:** Cualquier configuración relevante que se haya aplicado en la aplicación o en el entorno de prueba.
+
+## 4. Comportamiento Esperado vs. Comportamiento Real
+- **Comportamiento Esperado:** Describir lo que se esperaba que sucediera al realizar los pasos (por ejemplo, "El usuario debería ser redirigido a la página de inicio después de iniciar sesión exitosamente").
+- **Comportamiento Real:** Describir lo que realmente sucedió (por ejemplo, "Se muestra un mensaje de error 'Credenciales inválidas' aunque las credenciales son correctas").
+
+## 5. Capturas de Pantalla o Videos
+- **Imágenes o Videos:** Adjuntar capturas de pantalla o grabaciones de pantalla que muestren el bug en acción. Esto puede ser muy útil para ilustrar el problema.
+
+## 6. Registros (Logs)
+- **Logs del Navegador:** Proporcionar cualquier error que aparezca en la consola del navegador, así como registros de red si el bug está relacionado con llamadas a API.
+- **Logs del Servidor:** Si es posible, incluir registros del lado del servidor que puedan estar relacionados con el bug.
+
+## 7. Versión de la Aplicación
+- **Número de Versión:** Especificar la versión de la aplicación en la que se encontró el bug (por ejemplo, "Versión 1.2.3 del 01/11/2024").
+
+## 8. Condiciones Especiales
+- **Condiciones de Prueba:** Si hay condiciones especiales bajo las cuales se presentó el bug (por ejemplo, "El bug solo ocurre cuando se intenta acceder desde una red VPN").
+
+## Ejemplo de Reporte de Bug
+
+### Título
+Error de inicio de sesión con credenciales válidas
+
+### Descripción
+Al intentar iniciar sesión con un nombre de usuario y contraseña válidos, aparece un mensaje de error indicando que las credenciales son inválidas.
+
+### Pasos para Reproducir
+1. Navegar a la página de inicio de sesión.
+2. Ingresar el nombre de usuario "usuario@ejemplo.com".
+3. Ingresar la contraseña "ContraseñaSegura123".
+4. Hacer clic en el botón "Iniciar sesión".
+
+### Comportamiento Esperado
+El usuario debería ser redirigido a la página de inicio.
+
+### Comportamiento Real
+Aparece un mensaje de error: "Credenciales inválidas".
+
+### Datos de Prueba
+#### Entorno de Prueba
+- **Sistema Operativo:** Windows 10
+- **Navegador:** Google Chrome 116.0
+- **Resolución de Pantalla:** 1920x1080
+
+#### Datos de Entrada
+- **Nombre de usuario:** usuario@ejemplo.com
+- **Contraseña:** ContraseñaSegura123
+
+### Capturas de Pantalla
+(Adjuntar imagen del error)
+
+### Registros
+- **Consola del Navegador:** [Error en consola]
+
+### Versión de la Aplicación
+Versión 1.2.3 del 01/11/2024
+
+
 ## Conclusión
 
 En resumen, el trabajo de un QA Manual implica el diseño y ejecución de una amplia gama de pruebas para asegurar que el software cumple con los requerimientos funcionales y no funcionales, asegurando que el producto es robusto, confiable y fácil de usar para los usuarios finales. Un buen QA se enfoca en encontrar errores antes de que lleguen al usuario final, colabora estrechamente con los desarrolladores y el equipo de producto, y tiene un enfoque en la calidad en cada etapa del ciclo de vida del software.
