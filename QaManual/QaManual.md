@@ -8,6 +8,9 @@ El QA Manual sigue casos de prueba detallados y verifica las funcionalidades de 
 
 ## Ciclo de Vida de Desarrollo del Software (SDLC)
 
+![image](https://github.com/user-attachments/assets/7d9d92eb-5f97-4cab-91d1-ea940ab3a42a)
+
+
 El ciclo de vida de desarrollo del software (SDLC) es el proceso estructurado que sigue un equipo de desarrollo para crear software. Los principales pasos donde participa un QA Manual son:
 
 1. **Recolección de Requisitos**: El QA participa para entender lo que debe cumplir el software, generalmente basado en historias de usuario o especificaciones del cliente.
