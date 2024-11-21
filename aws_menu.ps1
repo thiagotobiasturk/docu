@@ -1,38 +1,38 @@
-# Definir la cantidad máxima de veces que se debe presionar Enter (ajustar según sea necesario)
-$maxRetries = 10  # Puedes ajustar este número según cuántas páginas de funciones Lambda tengas
-
-# Ejecutar el comando inicial
+# Definir el comando de AWS Lambda
 $command = "aws lambda list-functions --output json --query 'Functions[].FunctionName' --profile my-profile"
 
-# Ejecutar el comando y almacenar la salida
-$output = & $command
+# Función para simular presionar la tecla Enter
+Add-Type -TypeDefinition @"
+    using System;
+    using System.Runtime.InteropServices;
+    public class Keyboard {
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        public static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, int dwExtraInfo);
+    }
+"@
 
-# Mostrar los resultados de la primera ejecución
+# Ejecutar el comando inicial y capturar la salida
+$output = Invoke-Expression $command
+
+# Mostrar la salida inicial
 Write-Host $output
 
-# Si la salida tiene más de una página, proceder a presionar Enter automáticamente
+# Bucle para presionar Enter repetidamente hasta que no haya más resultados
+$maxRetries = 10  # Define el número de veces que se intentará
+
 for ($i = 1; $i -lt $maxRetries; $i++) {
-    Start-Sleep -Seconds 1  # Espera de 1 segundo entre las presiones de Enter (ajustable)
-    
-    # Simula presionar Enter al enviar un "Enter" vacío
-    Add-Type -TypeDefinition @"
-        using System;
-        using System.Runtime.InteropServices;
-        public class Keyboard {
-            [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-            public static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, int dwExtraInfo);
-        }
-"@
-    
-    # Simula presionar la tecla "Enter"
+    # Espera entre las presiones de Enter (ajustable)
+    Start-Sleep -Seconds 1
+
+    # Simula presionar Enter
     [Keyboard]::keybd_event(0x0D, 0, 0, 0)  # 0x0D es el código de la tecla Enter
     [Keyboard]::keybd_event(0x0D, 0, 2, 0)  # 0x0D es el código de la tecla Enter
-    
-    # Verificar si el comando sigue mostrando más resultados
-    $output = & $command
+
+    # Vuelve a ejecutar el comando de AWS para obtener más resultados
+    $output = Invoke-Expression $command
     Write-Host $output
 
-    # Si no hay más resultados (ya no hay NextMarker en la salida), terminamos
+    # Verificar si aún hay más resultados (NextMarker indica que hay más páginas)
     if ($output -notmatch "NextMarker") {
         Write-Host "No more pages, exiting."
         break
