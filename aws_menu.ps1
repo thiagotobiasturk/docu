@@ -13,9 +13,9 @@ function List-Lambdas {
     $regionOption = Read-Host "Do you want to filter by a region? (y/n)"
     if ($regionOption -eq "y") {
         $region = Read-Host "Enter the AWS region (e.g., us-east-1)"
-        $lambdas = aws lambda list-functions --output $outputFormat --region $region | ConvertFrom-Json
+        $lambdas = aws lambda list-functions --output $outputFormat --region $region --no-paginate | ConvertFrom-Json
     } else {
-        $lambdas = aws lambda list-functions --output $outputFormat | ConvertFrom-Json
+        $lambdas = aws lambda list-functions --output $outputFormat --no-paginate | ConvertFrom-Json
     }
 
     # If the output format is JSON, save to CSV
