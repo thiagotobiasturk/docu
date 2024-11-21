@@ -1,4 +1,3 @@
-sdsd
 function List-Lambdas {
     Write-Host "How would you like to display the Lambdas?"
     Write-Host "1 - JSON"
@@ -16,34 +15,37 @@ function List-Lambdas {
         $region = Read-Host "Enter the AWS region (e.g., us-east-1)"
     }
 
-    # Inicializar variables
+    # Inicializamos el array donde almacenaremos las funciones Lambda
     $lambdas = @()
     $nextMarker = $null
 
     do {
-        # Realizar la consulta a AWS Lambda, con o sin región
+        Write-Host "Fetching Lambda functions..."
+
+        # Hacer la llamada a AWS Lambda para obtener funciones, pasando el NextMarker si existe
         if ($region) {
             $response = aws lambda list-functions --output json --region $region --starting-token $nextMarker
         } else {
             $response = aws lambda list-functions --output json --starting-token $nextMarker
         }
 
-        # Convertir la respuesta JSON a un objeto PowerShell
+        # Convertir la respuesta a un objeto JSON
         $jsonResponse = $response | ConvertFrom-Json
 
         # Agregar las funciones obtenidas a la lista
         $lambdas += $jsonResponse.Functions
 
-        # Actualizar el marcador para la siguiente página
+        # Actualizar el NextMarker si hay más funciones
         $nextMarker = $jsonResponse.NextMarker
-    } while ($nextMarker)  # Continuar si hay más páginas
 
-    # Si el formato es JSON, guardar en CSV
+    } while ($nextMarker)  # Continuar si hay más funciones disponibles (paginas)
+
+    # Si el formato es JSON, exportamos las funciones a un archivo CSV
     if ($outputFormat -eq "json") {
         $lambdas | Select-Object FunctionName, Runtime, LastModified | Export-Csv -Path "lambdas_list.csv" -NoTypeInformation
         Write-Host "Lambda functions saved to lambdas_list.csv"
     } else {
-        # Si el formato es tabla, mostrar en la consola
+        # Si el formato es tabla, mostramos las funciones en pantalla
         $lambdas | Format-Table FunctionName, Runtime, LastModified
     }
 
