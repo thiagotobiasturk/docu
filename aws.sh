@@ -1,22 +1,18 @@
 #!/bin/bash
 
-# Función para convertir JSON a CSV usando jq
 json_to_csv() {
     input_json=$1
     output_csv=$2
 
-    # Comprobamos si jq está instalado
     if ! command -v jq &> /dev/null; then
         echo "jq no está instalado. Por favor instálalo para convertir JSON a CSV."
         exit 1
     fi
 
-    # Convertir el JSON a CSV (esto depende de la estructura específica de los datos)
     jq -r '[.[] | to_entries | map(.value) | @csv] | .[]' $input_json > $output_csv
     echo "Resultado guardado en $output_csv"
 }
 
-# Función para listar Lambdas y guardar en CSV
 List-Lambdas() {
     echo "How would you like to display the Lambdas?"
     echo "1 - JSON"
@@ -39,9 +35,8 @@ List-Lambdas() {
         aws lambda list-functions --output $outputFormat --profile PopularPSDevMB4Prototype-523008907015 > lambdas.json
     fi
 
-    # Convertir el resultado JSON a CSV
     json_to_csv lambdas.json $result_file
-    rm lambdas.json  # Limpiar el archivo JSON temporal
+    rm lambdas.json  
 
     read -p "Press any key to continue or type 'exit' to exit: " exitOption
     if [[ $exitOption == "exit" ]]; then
@@ -49,7 +44,6 @@ List-Lambdas() {
     fi
 }
 
-# Función para listar APIs y guardar en CSV
 List-APIs() {
     echo "Displaying APIs in JSON format."
 
@@ -81,9 +75,8 @@ List-APIs() {
         esac
     fi
 
-    # Convertir el resultado JSON a CSV
     json_to_csv apis.json $result_file
-    rm apis.json  # Limpiar el archivo JSON temporal
+    rm apis.json  
 
     read -p "Press any key to continue or type 'exit' to exit: " exitOption
     if [[ $exitOption == "exit" ]]; then
@@ -91,7 +84,7 @@ List-APIs() {
     fi
 }
 
-# Menú principal
+
 while true; do
     echo "======================="
     echo " AWS CLI Utility Menu"
