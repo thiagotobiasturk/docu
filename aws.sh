@@ -1,67 +1,97 @@
 #!/bin/bash
 
-list_lambdas() {
+# Función para convertir JSON a CSV usando jq
+json_to_csv() {
+    input_json=$1
+    output_csv=$2
+
+    # Comprobamos si jq está instalado
+    if ! command -v jq &> /dev/null; then
+        echo "jq no está instalado. Por favor instálalo para convertir JSON a CSV."
+        exit 1
+    fi
+
+    # Convertir el JSON a CSV (esto depende de la estructura específica de los datos)
+    jq -r '[.[] | to_entries | map(.value) | @csv] | .[]' $input_json > $output_csv
+    echo "Resultado guardado en $output_csv"
+}
+
+# Función para listar Lambdas y guardar en CSV
+List-Lambdas() {
     echo "How would you like to display the Lambdas?"
     echo "1 - JSON"
     echo "2 - Table"
-    read -p "Choose an option: " format_option
+    read -p "Choose an option: " formatOption
 
-    case $format_option in
-        1) OUTPUT_FORMAT="json" ;;
-        2) OUTPUT_FORMAT="table" ;;
-        *) echo "Invalid option. Defaulting to JSON."; OUTPUT_FORMAT="json" ;;
+    case $formatOption in
+        1) outputFormat="json" ;;
+        2) outputFormat="table" ;;
+        *) echo "Invalid option. Defaulting to JSON."; outputFormat="json" ;;
     esac
 
-    read -p "Do you want to filter by a region? (y/n): " region_option
-    if [ "$region_option" == "y" ]; then
+    read -p "Do you want to filter by a region? (y/n): " regionOption
+    if [[ $regionOption == "y" ]]; then
         read -p "Enter the AWS region (e.g., us-east-1): " region
-        aws lambda list-functions --output $OUTPUT_FORMAT --region $region
+        result_file="lambdas_$region.csv"
+        aws lambda list-functions --output $outputFormat --region $region --profile PopularPSDevMB4Prototype-523008907015 > lambdas.json
     else
-        aws lambda list-functions --output $OUTPUT_FORMAT
+        result_file="lambdas_all.csv"
+        aws lambda list-functions --output $outputFormat --profile PopularPSDevMB4Prototype-523008907015 > lambdas.json
+    fi
+
+    # Convertir el resultado JSON a CSV
+    json_to_csv lambdas.json $result_file
+    rm lambdas.json  # Limpiar el archivo JSON temporal
+
+    read -p "Press any key to continue or type 'exit' to exit: " exitOption
+    if [[ $exitOption == "exit" ]]; then
+        exit
     fi
 }
 
-list_apis() {
-    echo "How would you like to display the APIs?"
-    echo "1 - JSON"
-    echo "2 - Table"
-    read -p "Choose an option: " format_option
+# Función para listar APIs y guardar en CSV
+List-APIs() {
+    echo "Displaying APIs in JSON format."
 
-    case $format_option in
-        1) OUTPUT_FORMAT="json" ;;
-        2) OUTPUT_FORMAT="table" ;;
-        *) echo "Invalid option. Defaulting to JSON."; OUTPUT_FORMAT="json" ;;
-    esac
-
-    read -p "Do you want to filter by a region? (y/n): " region_option
-    if [ "$region_option" == "y" ]; then
+    read -p "Do you want to filter by a region? (y/n): " regionOption
+    if [[ $regionOption == "y" ]]; then
         read -p "Enter the AWS region (e.g., us-east-1): " region
         echo "1 - List REST APIs"
         echo "2 - List HTTP APIs"
-        read -p "Choose an option: " api_option
+        read -p "Choose an option: " apiOption
 
-        if [ "$api_option" == "1" ]; then
-            aws apigateway get-rest-apis --output $OUTPUT_FORMAT --region $region
-        elif [ "$api_option" == "2" ]; then
-            aws apigatewayv2 get-apis --output $OUTPUT_FORMAT --region $region
-        else
-            echo "Invalid option for API type."
-        fi
+        case $apiOption in
+            1) result_file="rest_apis_$region.csv"
+               aws apigateway get-rest-apis --output json --region $region --profile PopularPSDevMB4Prototype-523008907015 > apis.json ;;
+            2) result_file="http_apis_$region.csv"
+               aws apigatewayv2 get-apis --output json --region $region --profile PopularPSDevMB4Prototype-523008907015 > apis.json ;;
+            *) echo "Invalid option for API type." ;;
+        esac
     else
         echo "1 - List REST APIs"
         echo "2 - List HTTP APIs"
-        read -p "Choose an option: " api_option
+        read -p "Choose an option: " apiOption
 
-        if [ "$api_option" == "1" ]; then
-            aws apigateway get-rest-apis --output $OUTPUT_FORMAT
-        elif [ "$api_option" == "2" ]; then
-            aws apigatewayv2 get-apis --output $OUTPUT_FORMAT
-        else
-            echo "Invalid option for API type."
-        fi
+        case $apiOption in
+            1) result_file="rest_apis_all.csv"
+               aws apigateway get-rest-apis --output json --profile PopularPSDevMB4Prototype-523008907015 > apis.json ;;
+            2) result_file="http_apis_all.csv"
+               aws apigatewayv2 get-apis --output json --profile PopularPSDevMB4Prototype-523008907015 > apis.json ;;
+            *) echo "Invalid option for API type." ;;
+        esac
+    fi
+
+    # Convertir el resultado JSON a CSV
+    json_to_csv apis.json $result_file
+    rm apis.json  # Limpiar el archivo JSON temporal
+
+    read -p "Press any key to continue or type 'exit' to exit: " exitOption
+    if [[ $exitOption == "exit" ]]; then
+        exit
     fi
 }
 
+# Menú principal
 while true; do
     echo "======================="
     echo " AWS CLI Utility Menu"
@@ -72,11 +102,9 @@ while true; do
     read -p "Choose an option: " option
 
     case $option in
-        1) list_lambdas ;;
-        2) list_apis ;;
+        1) List-Lambdas ;;
+        2) List-APIs ;;
         3) echo "Exiting..."; exit ;;
         *) echo "Invalid option, please choose 1, 2, or 3." ;;
     esac
 done
-
-
