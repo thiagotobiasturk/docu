@@ -1,4 +1,3 @@
-
 function List-Lambdas {
     Write-Host "How would you like to display the Lambdas?"
     Write-Host "1 - JSON"
@@ -14,9 +13,18 @@ function List-Lambdas {
     $regionOption = Read-Host "Do you want to filter by a region? (y/n)"
     if ($regionOption -eq "y") {
         $region = Read-Host "Enter the AWS region (e.g., us-east-1)"
-        aws lambda list-functions --output $outputFormat --region $region
+        $lambdas = aws lambda list-functions --output $outputFormat --region $region | ConvertFrom-Json
     } else {
-        aws lambda list-functions --output $outputFormat
+        $lambdas = aws lambda list-functions --output $outputFormat | ConvertFrom-Json
+    }
+
+    # If the output format is JSON, save to CSV
+    if ($outputFormat -eq "json") {
+        $lambdas.Functions | Select-Object FunctionName, Runtime, LastModified | Export-Csv -Path "lambdas_list.csv" -NoTypeInformation
+        Write-Host "Lambda functions saved to lambdas_list.csv"
+    } else {
+        # If the output is a table, just display it
+        $lambdas.Functions | Format-Table FunctionName, Runtime, LastModified
     }
 
     $exitOption = Read-Host "Press any key to continue or type 'exit' to exit"
