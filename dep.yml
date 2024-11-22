@@ -1,0 +1,34 @@
+# To get started with Dependabot version updates, you'll need to specify which
+# package ecosystems to update and where the package manifests are located.
+# Please see the documentation for all configuration options:
+# https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+ 
+version: 2
+registries:
+  artifactory:
+    type: nuget-feed
+    url: https://artifactory.fis.dev/artifactory/api/nuget/v3/investran-nuget-dev
+    username: ${{secrets.ARTIFACTORY_USER}}
+    password: ${{secrets.ARTIFACTORY_PASSWORD}}
+updates:
+  - package-ecosystem: "nuget"
+    registries: "*"    
+    open-pull-requests-limit: 1
+    schedule:
+      interval: "daily"
+    allow:
+      - dependency-type: "direct"
+    ignore:
+      - dependency-name: "indirect"
+      update-types:
+        - "version-update:semver-patch"
+        - "version-update:semver-minor"
+        - "version-update:semver-major"        
+    groups:
+      all-updates:
+        patterns:
+          - "*"    
+      test-projects:
+        patterns:
+          - "*UnitTests"  
+          - "*Tests"
