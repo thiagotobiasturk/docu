@@ -1,3 +1,11 @@
+AzureDiagnostics
+| where ResourceType == "APPLICATIONGATEWAYS"
+| where TimeGenerated > ago(48h)
+| project TimeGenerated, HttpStatusCode, RequestUri, ClientIp, Method
+| summarize Count = count() by HttpStatusCode, RequestUri
+| order by Count desc
+
+
 # Definir el comando de AWS Lambda
 $command = "aws lambda list-functions --output json --query 'Functions[].FunctionName' --profile my-profile"
 }
