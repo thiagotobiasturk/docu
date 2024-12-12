@@ -1,5 +1,11 @@
 AzureDiagnostics
 | where ResourceType == "APPLICATIONGATEWAYS"
+| where TimeGenerated > ago(7d)
+| take 10  // Muestra 10 registros para inspección
+
+
+AzureDiagnostics
+| where ResourceType == "APPLICATIONGATEWAYS"
 | where TimeGenerated > ago(48h)
 | project TimeGenerated, HttpStatusCode, RequestUri, ClientIp, Method
 | summarize Count = count() by HttpStatusCode, RequestUri
