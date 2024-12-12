@@ -1,3 +1,7 @@
+AzureMetrics
+| where TimeGenerated > ago(7d)
+| take 10
+
 AzureDiagnostics
 | where ResourceType == "APPLICATIONGATEWAYS"
 | where TimeGenerated > ago(7d)
