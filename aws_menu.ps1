@@ -1,3 +1,4 @@
+Commented allow section to test PR creation for vulnerable dependency update and downgraded System.Text.Json to version 5.0.4
 AzureMetrics
 | where TimeGenerated > ago(7d)
 | take 10
