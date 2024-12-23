@@ -23,6 +23,12 @@ resource "azurerm_servicebus_topic" "example" {
   resource_group_name = azurerm_resource_group.example.name
 }
 
+ # Opcional: Para autenticar con un Service Principal
+  client_id       = "your-client-id"
+  client_secret   = "your-client-secret"
+  tenant_id       = "your-tenant-id"
+  subscription_id = "your-subscription-id"
+}
 
 Downgrade a dependency: Reduced the version of [dependency_name] from [current_version] to [previous_version] to address [reason, e.g., compatibility issues].
 Restore Dependabot configuration: Reverted Dependabot to its initial configuration to test whether it generates updates correctly after this change.
