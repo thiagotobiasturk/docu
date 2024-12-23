@@ -1,3 +1,29 @@
+provider "azurerm" {
+  features {}
+}
+
+# Crear un grupo de recursos en Azure
+resource "azurerm_resource_group" "example" {
+  name     = "my-resource-group"
+  location = "East US"
+}
+
+# Crear un Service Bus Namespace
+resource "azurerm_servicebus_namespace" "example" {
+  name                = "my-servicebus-namespace"  # Nombre único para el namespace
+  location            = azurerm_resource_group.example.location
+  resource_group_name = azurerm_resource_group.example.name
+  sku                 = "Standard"  # Puede ser "Basic", "Standard", "Premium"
+}
+
+# Crear un Topic dentro del Service Bus Namespace
+resource "azurerm_servicebus_topic" "example" {
+  name                = "my-topic"
+  namespace_name      = azurerm_servicebus_namespace.example.name
+  resource_group_name = azurerm_resource_group.example.name
+}
+
+
 Downgrade a dependency: Reduced the version of [dependency_name] from [current_version] to [previous_version] to address [reason, e.g., compatibility issues].
 Restore Dependabot configuration: Reverted Dependabot to its initial configuration to test whether it generates updates correctly after this change.
 :6JrWnR_.!dQN36
