@@ -7,6 +7,13 @@ resource "azurerm_resource_group" "example" {
   name     = "my-resource-group"
   location = "East US"
 }
+  tags = {
+    BUC       = "4001.5223230.9822.0000.0000.3039"
+    REQUESTOR = "Rachitha Tivakaran"
+    SNOW      = "SCTASK21001790932"
+    SPONSOR   = "John Zilinskis"
+  }
+}
 
 # Crear un Service Bus Namespace
 resource "azurerm_servicebus_namespace" "example" {
