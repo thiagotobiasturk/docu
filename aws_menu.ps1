@@ -3,6 +3,8 @@ http://delivery.popular.com/secure/RapidBoard.jspa?rapidView=621&projectKey=MBM4
 provider "azurerm" {
   features {}
 }
+user: Alan.Duarte@popular.com
+pass:  :6JrWnR_.!dQN36
 
 # Crear un grupo de recursos en Azure
 resource "azurerm_resource_group" "example" {
