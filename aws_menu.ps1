@@ -1,5 +1,7 @@
 http://delivery.popular.com/secure/RapidBoard.jspa?rapidView=621&projectKey=MBM40&view=planning&issueLimit=100
 
+cibp-bff-get-save-terms-and-conditions
+
 provider "azurerm" {
   features {}
 }
