@@ -1,7 +1,7 @@
 https://docs.google.com/document/d/1yT2k5Vhv7P0_fV7lofs3QbqRAi-MofwnoDWrXQIcy70/export?format=pdf
 This is documentation related to App-gateway logs
 const { exec } = require('child_process');
-
+It has been updated on Conflunence (LINK
 // Comando para obtener las funciones Lambda
 const awsCommand = 'aws lambda list-functions --output json --query "Functions[].FunctionName" --profile my-profile';
 
