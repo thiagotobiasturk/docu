@@ -1,3 +1,20 @@
+output "servicebus_primary_key" {
+  value = azurerm_servicebus_namespace_authorization_rule.example.primary_key
+}
+
+output "servicebus_secondary_key" {
+  value = azurerm_servicebus_namespace_authorization_rule.example.secondary_key
+}
+
+
+resource "azurerm_servicebus_namespace_authorization_rule" "servicebus_rule" {
+  name                = "example-authorization-rule"
+  namespace_name      = azurerm_servicebus_namespace.servicebus_namespace.name
+  resource_group_name = azurerm_servicebus_namespace.servicebus_namespace.resource_group_name
+  rights              = ["Listen", "Send", "Manage"]
+}
+
+
 http://delivery.popular.com/secure/RapidBoard.jspa?rapidView=621&projectKey=MBM40&view=planning&issueLimit=100
 
 cibp-bff-get-save-terms-and-conditions
