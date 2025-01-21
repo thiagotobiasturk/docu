@@ -1,3 +1,127 @@
+# Variables y configuración
+
+variable "servicebus_ns_sku" {
+  description = "The SKU (pricing tier) for the Service Bus Namespace (default: Standard)"
+  type        = string
+  default     = "Standard"
+}
+
+variable "servicebus_queue_max_size_in_megabytes" {
+  description = "The maximum size for the Service Bus Queue in megabytes (default: 1024)"
+  type        = number
+  default     = 1024
+  validation {
+    condition     = var.servicebus_queue_max_size_in_megabytes >= 1024 && var.servicebus_queue_max_size_in_megabytes <= 8192
+    error_message = "The max size must be between 1024 and 8192 megabytes."
+  }
+}
+
+variable "servicebus_queue_lock_duration" {
+  description = "The lock duration for the Service Bus Queue (default: PT5M, which is 5 minutes)"
+  type        = string
+  default     = "PT5M"
+}
+
+variable "servicebus_queue_default_message_ttl" {
+  description = "The default time-to-live (TTL) for messages in the Service Bus Queue (default: P14D, which is 14 days)"
+  type        = string
+  default     = "P14D"
+}
+
+locals {
+  namespace_name = format("%s-namespace", var.name_format)
+  queues = {
+    queue1 = {
+      name                = format("%s-queue1", var.name_format)
+      max_size_in_megabytes = var.servicebus_queue_max_size_in_megabytes
+      lock_duration       = var.servicebus_queue_lock_duration
+      default_message_ttl = var.servicebus_queue_default_message_ttl
+    }
+  }
+}
+
+# Crear el namespace
+resource "azurerm_servicebus_namespace" "servicebus_namespace" {
+  name                = local.namespace_name
+  location            = var.main_resource_group_location
+  resource_group_name = var.main_resource_group_name
+  sku                 = var.servicebus_ns_sku
+  tags                = var.base_tags
+}
+
+# Crear las colas
+resource "azurerm_servicebus_queue" "servicebus_queue" {
+  for_each            = local.queues
+  name                = each.value.name
+  namespace_id        = azurerm_servicebus_namespace.servicebus_namespace.id
+  max_size_in_megabytes = each.value.max_size_in_megabytes
+  lock_duration       = each.value.lock_duration
+  default_message_ttl = each.value.default_message_ttl
+  depends_on          = [azurerm_servicebus_namespace.servicebus_namespace]
+}
+
+# Crear la regla de autorización
+resource "azurerm_servicebus_namespace_authorization_rule" "servicebus_rule" {
+  name                = "example-authorization-rule"
+  namespace_name      = azurerm_servicebus_namespace.servicebus_namespace.name
+  resource_group_name = var.main_resource_group_name
+  rights              = ["Listen", "Send", "Manage"]
+}
+
+# Outputs
+output "servicebus_namespace_name" {
+  description = "The name of the Service Bus Namespace"
+  value       = azurerm_servicebus_namespace.servicebus_namespace.name
+}
+
+output "servicebus_namespace_id" {
+  description = "The ID of the Service Bus Namespace"
+  value       = azurerm_servicebus_namespace.servicebus_namespace.id
+}
+
+output "servicebus_queue_names" {
+  description = "The names of the Service Bus Queues"
+  value       = [for queue in azurerm_servicebus_queue.servicebus_queue : queue.name]
+}
+
+output "servicebus_queue_ids" {
+  description = "The IDs of the Service Bus Queues"
+  value       = [for queue in azurerm_servicebus_queue.servicebus_queue : queue.id]
+}
+
+output "servicebus_primary_key" {
+  description = "The primary key of the Service Bus authorization rule"
+  value       = azurerm_servicebus_namespace_authorization_rule.servicebus_rule.primary_key
+}
+
+output "servicebus_secondary_key" {
+  description = "The secondary key of the Service Bus authorization rule"
+  value       = azurerm_servicebus_namespace_authorization_rule.servicebus_rule.secondary_key
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 output "servicebus_primary_key" {
   value = azurerm_servicebus_namespace_authorization_rule.example.primary_key
 }
