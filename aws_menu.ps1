@@ -1,3 +1,6 @@
+  pcs_config = jsondecode(data.local_file.pcs_config.content)
+
+
 # Variables y configuración
 
 variable "servicebus_ns_sku" {
