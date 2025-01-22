@@ -1,3 +1,21 @@
+{
+  "MetricsProviders": {
+    "Providers": [
+      {
+        "Name": "ExampleProvider",
+        "Data": [
+          {
+            "InstrumentationKey": "example-key",
+            "EndpointAddress": "example-endpoint",
+            "Location": "example-location"
+          }
+        ]
+      }
+    ]
+  }
+}
+
+  
   pcs_config = jsondecode(data.local_file.pcs_config.content)
 
 
