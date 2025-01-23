@@ -1,6 +1,7 @@
 https://bitbucket.fis.dev/projects/INVESTRAN/repos/pcs-containers/raw/containers/Availability-health-check/kubernetes/appsettings.json?at=refs/heads/Trunk
 https://bitbucket.fis.dev/projects/INVESTRAN/repos/pcs-containers/raw/containers/Availability-health-check/kubernetes/appsettings.json?at=refs%2Fheads%2FTrunk
 
+curl "https://bitbucket.fis.dev/projects/INVESTRAN/repos/pcs-containers/raw/containers/Availability-health-check/kubernetes/appsettings.json?at=refs%2Fheads%2FTrunk"
 
 {
   "MetricsProviders": {
