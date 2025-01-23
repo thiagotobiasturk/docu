@@ -3,6 +3,10 @@ https://bitbucket.fis.dev/projects/INVESTRAN/repos/pcs-containers/raw/containers
 
 curl "https://bitbucket.fis.dev/projects/INVESTRAN/repos/pcs-containers/raw/containers/Availability-health-check/kubernetes/appsettings.json?at=refs%2Fheads%2FTrunk"
 
+curl -H "Authorization: Bearer <your-access-token>" \
+     -L "https://bitbucket.fis.dev/projects/INVESTRAN/repos/pcs-containers/raw/containers/Availability-health-check/kubernetes/appsettings.json?at=refs%2Fheads%2FTrunk"
+
+
 {
   "MetricsProviders": {
     "Providers": [
