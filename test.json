@@ -1,0 +1,16 @@
+{
+  "MetricsProviders": {
+    "Providers": [
+      {
+        "Name": "ExampleProvider",
+        "Data": [
+          {
+            "InstrumentationKey": "example-key",
+            "EndpointAddress": "example-endpoint",
+            "Location": "example-location"
+          }
+        ]
+      }
+    ]
+  }
+}
