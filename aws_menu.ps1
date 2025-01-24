@@ -1,3 +1,15 @@
+action {
+  action_group_id = azurerm_monitor_action_group.pcs_action_group[local.team_mapping[each.value.team]].id
+}
+locals {
+  team_mapping = {
+    "RW Export Host"       = "pcs_accounting"   # Cambiar al nombre de clave real
+    "CRM AlertWeb Service" = "pcs_engineering"  # Cambiar al nombre de clave real
+    "RW Api"               = "pcs_coredev"      # Cambiar al nombre de clave real
+  }
+}
+
+
 # Leer y decodificar el archivo JSON directamente
 locals {
   pcs_config = jsondecode(file("${path.module}/appsettings.json")) # Asegúrate de que la ruta sea correcta
