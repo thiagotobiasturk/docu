@@ -1,3 +1,83 @@
+# Leer y decodificar el archivo JSON directamente
+locals {
+  pcs_config = jsondecode(file("${path.module}/appsettings.json")) # Asegúrate de que la ruta sea correcta
+}
+
+# Extraer los servicios del archivo JSON
+locals {
+  services = { for service in local.pcs_config.PCSRunner.PCSRuns.PingPCS :
+    service.Name => {
+      team        = service.Team
+      metric_name = "HttpStatusCode"
+      threshold   = service.SucessStatusCode
+    }
+  }
+}
+
+# Crear grupos de acción para cada equipo de desarrollo de PCS
+resource "azurerm_monitor_action_group" "pcs_action_group" {
+  for_each = var.pcs_dev_teams
+
+  name                = "${each.key}-action-group"
+  resource_group_name = "pcs-resources"
+  short_name          = each.key
+
+  email_receiver {
+    name           = "${each.key}-primary"
+    email_address  = each.value.primary_email
+  }
+
+  dynamic "email_receiver" {
+    for_each = each.value.secondary_email != "" ? [each.value.secondary_email] : []
+    content {
+      name          = "${each.key}-secondary"
+      email_address = email_receiver.value
+    }
+  }
+}
+
+# Crear reglas de alerta de métricas para cada servicio y asociarlas con el grupo de acción correspondiente
+resource "azurerm_monitor_metric_alert" "pcs_metric_alert" {
+  for_each = local.services
+
+  name                = "${each.key}-alert"
+  resource_group_name = "pcs-resources"
+  scopes              = [azurerm_resource_group.pcs_resources.id]
+  description         = "Alert for ${each.key} service"
+  severity            = 2
+  frequency           = "PT1M"
+  window_size         = "PT5M"
+
+  criteria {
+    metric_namespace = "Microsoft.Web/sites"
+    metric_name      = each.value.metric_name
+    aggregation      = "Average"
+    operator         = "GreaterThan"
+    threshold        = each.value.threshold
+  }
+
+  action {
+    action_group_id = azurerm_monitor_action_group.pcs_action_group[each.value.team].id
+  }
+}
+
+# Definir el grupo de recursos para los grupos de acción y reglas de alerta
+resource "azurerm_resource_group" "pcs_resources" {
+  name     = "pcs-resources"
+  location = "East US"
+}
+
+# Outputs para depuración (Opcional)
+output "metrics_providers" {
+  value = local.pcs_config["MetricsProviders"]
+}
+
+output "pcs_runner" {
+  value = local.pcs_config["PCSRunner"]
+}
+
+
+
 https://bitbucket.fis.dev/projects/INVESTRAN/repos/pcs-containers/raw/containers/Availability-health-check/kubernetes/appsettings.json?at=refs/heads/Trunk
 https://bitbucket.fis.dev/projects/INVESTRAN/repos/pcs-containers/raw/containers/Availability-health-check/kubernetes/appsettings.json?at=refs%2Fheads%2FTrunk
 
