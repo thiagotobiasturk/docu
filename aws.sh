@@ -1,4 +1,9 @@
 #!/bin/bash
+variable "app_insights_scope" {
+  description = "Ruta del componente de Application Insights"
+  type        = string
+  default     = "/subscriptions/c2ac73e0-b73d-4485-8ffb-45314b27f272/resourceGroups/sdl-resources-investran-dev-eus2/providers/Microsoft.Insights/components/pcs-eastus2-dev-appinsights"
+}
 
 json_to_csv() {
     input_json=$1
