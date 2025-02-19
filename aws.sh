@@ -1,3 +1,13 @@
+Crear un PR, informando
+Name: " Setup-nuget is not working, need to update version"
+Description:
+" Last running versions are falling or taking forever to finish:"
+(Agregar screen del error)
+" Last time this step works, we had the information that it will be deprecated soon:"
+(Agregar screen de que se esta por deprecarse)
+" Updated to next version:"
+(Screen de nueva version usada)
+
 #!/bin/bash
 variable "app_insights_scope" {
   description = "Ruta del componente de Application Insights"
