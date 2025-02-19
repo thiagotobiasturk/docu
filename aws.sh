@@ -2,6 +2,8 @@
   run: |
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
   shell: pwsh
+- name: Clear NuGet Cache
+  run: nuget locals all -clear
 
 
 Crear un PR, informando
