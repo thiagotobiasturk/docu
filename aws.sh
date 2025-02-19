@@ -1,3 +1,9 @@
+- name: Force TLS 1.2
+  run: |
+    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+  shell: pwsh
+
+
 Crear un PR, informando
 Name: " Setup-nuget is not working, need to update version"
 Description:
