@@ -1,0 +1,12 @@
+name: Test Jenkins Access
+
+on:
+  workflow_dispatch:  # Allows manual execution
+
+jobs:
+  test-jenkins:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test connectivity to Jenkins
+        run: |
+          curl -k -I https://www.youtube.com/watch?v=lVvDgb7LgzU || echo "Could not connect"
