@@ -1,34 +1,79 @@
-# To get started with Dependabot version updates, you'll need to specify which
-# package ecosystems to update and where the package manifests are located.
-# Please see the documentation for all configuration options:
-# https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
- 
 version: 2
+
 registries:
   artifactory:
     type: nuget-feed
     url: https://artifactory.fis.dev/artifactory/api/nuget/v3/investran-nuget-dev
     username: ${{secrets.ARTIFACTORY_USER}}
     password: ${{secrets.ARTIFACTORY_PASSWORD}}
+
 updates:
   - package-ecosystem: "nuget"
-    registries: "*"    
-    open-pull-requests-limit: 1
+    registries: "*"
+    directories:
+      - "/FIS.Investran.Suite.Cookies.Handler.NetCore"
+      - "/FIS.Investran.Suite.Handlers.OAuth.ImpersonateTests"
+      - "/FIS.Investran.Suite.Handlers.OAuth.UnitTests"
+      - "/FIS.Investran.Suite.HeaderScheme.Handler.NetCore"
+      - "/FIS.Investran.Suite.OAuth"
+      - "/FIS.Investran.Suite.OAuth.Extensions"
+      - "/FIS.Investran.Suite.OAuth.Tests"
+      - "/FIS.Investran.Suite.OAuthHandler.NetCore"
+      - "/FIS.Investran.Suite.Security.BackEnd.Services"
+      - "/FIS.Investran.Suite.Security.BackEnd.Services.Contracts"
+      - "/FIS.Investran.Suite.Security.Encryption.Contracts"
+      - "/FIS.Investran.Suite.Security.Encryption.MachineKey"
+      - "/FIS.Investran.Suite.Security.NH"
+      - "/FIS.Investran.Suite.Security.Services"
+      - "/FIS.Investran.Suite.Security.Services.Contracts"
+      - "/FIS.Investran.Suite.Security.Services.UnitTests"
+      - "/FIS.Investran.Suite.Tokens.Handler.Aws.NetCore"
+      - "/FIS.Investran.Suite.Tokens.Handler.Aws.NetCore.UnitTest"
+      - "/FIS.Investran.Suite.Tokens.Handler.AzureADNetCore"
+      - "/FIS.Investran.Suite.Tokens.Handler.NetCore"
+      - "/FIS.Investran.Suite.Tokens.Handler.Okta"
+      - "/FIS.Investran.Suite.Tokens.Jwt"
+      - "/FIS.Investran.Suite.Tokens.NetStandard"
+      - "/FIS.Investran.Suite.TokensHandler.Tests"
+      - "/FIS.Investran.Security.Services"
+      - "/FIS.Investran.Security.Services.Contracts"
+      - "/FIS.Investran.Security.Services.NH" 
     schedule:
       interval: "daily"
-    allow:
-      - dependency-type: "direct"
-    ignore:
-      - dependency-name: "indirect"
-      update-types:
-        - "version-update:semver-patch"
-        - "version-update:semver-minor"
-        - "version-update:semver-major"        
-    groups:
-      all-updates:
-        patterns:
-          - "*"    
-      test-projects:
-        patterns:
-          - "*UnitTests"  
-          - "*Tests"
+    open-pull-requests-limit: 1
+    security-updates: true 
+
+# # To get started with Dependabot version updates, you'll need to specify which
+# # package ecosystems to update and where the package manifests are located.
+# # Please see the documentation for all configuration options:
+# # https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+ 
+# version: 2
+# registries:
+#   artifactory:
+#     type: nuget-feed
+#     url: https://artifactory.fis.dev/artifactory/api/nuget/v3/investran-nuget-dev
+#     username: ${{secrets.ARTIFACTORY_USER}}
+#     password: ${{secrets.ARTIFACTORY_PASSWORD}}
+# updates:
+#   - package-ecosystem: "nuget"
+#     registries: "*"    
+#     open-pull-requests-limit: 1
+#     schedule:
+#       interval: "daily"
+#     allow:
+#       - dependency-type: "direct"
+#     ignore:
+#       - dependency-name: "indirect"
+#       update-types:
+#         - "version-update:semver-patch"
+#         - "version-update:semver-minor"
+#         - "version-update:semver-major"        
+#     groups:
+#       all-updates:
+#         patterns:
+#           - "*"    
+#       test-projects:
+#         patterns:
+#           - "*UnitTests"  
+#           - "*Tests"
