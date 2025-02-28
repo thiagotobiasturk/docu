@@ -1,3 +1,5 @@
+This test aims to identify the directory or directories causing errors without the need to run multiple separate PRs, as was done previously. By splitting the directories into different workflows, we can more efficiently detect where the issue occurs and streamline the debugging process. 🚀
+
 A test was conducted with new directories in the Dependabot configuration, but they did not work correctly. In this PR, those directories are replaced with others to check if the new ones also have errors.
 
 Yesterday, I reduced the number of directories to help debug the Dependabot error. Today, I am gradually reintroducing them to restore the original structure while monitoring for any issues.
