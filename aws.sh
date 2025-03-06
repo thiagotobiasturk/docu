@@ -1,3 +1,5 @@
+Steven my friend, i change the meeting for tomorrow, sorry i need to finish related to github repo for the Engineering team. Is that ok
+
 Steven, im so sorry, i totally forgot about our meeting, i need to drop to take my daughter to a medical control, lets have our meeting next week, is that ok?
 - name: Force TLS 1.2
   run: |
