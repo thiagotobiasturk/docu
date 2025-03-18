@@ -1,6 +1,40 @@
 apiVersion: v1
 kind: Pod
 metadata:
+  name: windows-hang-pod
+spec:
+  nodeSelector:
+    kubernetes.io/os: windows
+  containers:
+  - name: windows-container
+    image: mcr.microsoft.com/windows/servercore:ltsc2022
+    command: ["powershell.exe", "-Command", "Start-Sleep -s 3600"]
+  restartPolicy: Always
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: windows-pvc-pod
+spec:
+  nodeSelector:
+    kubernetes.io/os: windows
+  volumes:
+  - name: test-volume
+    persistentVolumeClaim:
+      claimName: windows-test-pvc
+  containers:
+  - name: windows-container
+    image: mcr.microsoft.com/windows/servercore:ltsc2022
+    command: ["ping", "-t", "localhost"]
+    volumeMounts:
+    - mountPath: "/data"
+      name: test-volume
+  restartPolicy: Always
+
+
+apiVersion: v1
+kind: Pod
+metadata:
   name: windows-test-pod
 spec:
   nodeSelector:
