@@ -1,4 +1,5 @@
 kubectl get secret svc-invs-artifactory-new -o jsonpath='{.data.\.dockerconfigjson}' | base64 --decode
+kubectl rollout restart deployment reports-api-deployment -n bold-services
 
 
 Steven my friend, i change the meeting for tomorrow, sorry i need to finish related to github repo for the Engineering team. Is that ok
