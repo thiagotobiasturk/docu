@@ -1,3 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: windows-test-pod
+spec:
+  nodeSelector:
+    kubernetes.io/os: windows
+  containers:
+  - name: windows-container
+    image: mcr.microsoft.com/windows/servercore:ltsc2022
+    command: ["ping", "-t", "localhost"]  # Mantiene el contenedor en ejecución
+  restartPolicy: Always
+
+
+kubectl apply -f windows-pod.yaml
+kubectl get pods
+kubectl delete pod windows-test-pod
+kubectl delete pod windows-test-pod --grace-period=0 --force
+kubectl get pod windows-test-pod -o json | jq .metadata.finalizers
+kubectl describe pod windows-test-pod
+kubectl logs windows-test-pod --previous
+
+
+
 kubectl get secret svc-invs-artifactory-new -o jsonpath='{.data.\.dockerconfigjson}' | base64 --decode
 kubectl rollout restart deployment reports-api-deployment -n bold-services
 wget -qO- http://10.33.52.250
