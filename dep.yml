@@ -9,6 +9,7 @@ version: 2
 
  kubectl delete pod <nombre-del-pod> --grace-period=0 --force
 
+ENTRYPOINT ["sh", "-c", "trap 'echo SIGTERM received; exit 0' SIGTERM; sleep infinity"]
 
 registries:
   artifactory:
