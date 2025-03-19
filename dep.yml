@@ -7,6 +7,9 @@ Yesterday, I reduced the number of directories to help debug the Dependabot erro
 To diagnose the performance issue with Dependabot, most directories in .github/dependabot.yml have been commented out, leaving only a subset active. This will help identify if a specific directory is causing delays in execution.
 version: 2
 
+ kubectl delete pod <nombre-del-pod> --grace-period=0 --force
+
+
 registries:
   artifactory:
     type: nuget-feed
