@@ -1,5 +1,7 @@
 pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org PyAutoGUI
 ("xoxp-6209710763493-6236228023216-8684558229795-24d8ae58829a629d0ae9967aa74f6000")
+setup.exe /Action=Install /MediaPath="C:\SQL2017\"
+
 apiVersion: v1
 kind: Pod
 metadata:
