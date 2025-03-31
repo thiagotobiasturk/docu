@@ -1,3 +1,5 @@
+pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org PyAutoGUI
+
 apiVersion: v1
 kind: Pod
 metadata:
