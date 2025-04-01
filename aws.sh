@@ -3,6 +3,7 @@ pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-hos
 setup.exe /Action=Install /MediaPath="C:\SQL2017\"
 netsh advfirewall firewall show rule name=all | findstr 1444
 netsh advfirewall firewall show rule name="SQL SERVER 2017-1444" verbose
+Test-NetConnection -ComputerName 10.0.2.15 -Port 1444
 
 netstat -ano | findstr LISTENING | findstr 1444
 
