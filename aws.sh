@@ -10,6 +10,13 @@ docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=YourStrong!Passw0rd" \
    -p 1433:1433 --name sqlserver \
    -d mcr.microsoft.com/mssql/server:2017-latest
 
+   docker pull mcr.microsoft.com/mssql/server:2019-windows
+
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=1234" `
+   -p 1433:1433 --name sqlserver `
+   -d mcr.microsoft.com/mssql/server:2019-windows
+
+
 netstat -ano | findstr LISTENING | findstr 1444
 
 apiVersion: v1
