@@ -7,6 +7,9 @@ Test-NetConnection -ComputerName 10.0.2.15 -Port 1444
 netsh advfirewall set allprofiles state off
 docker pull mcr.microsoft.com/mssql/server:2019-latest
 
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=1234" \
+   -p 1433:1433 --name sqlserver \
+   -d mcr.microsoft.com/mssql/server:2019-latest
 
 docker pull mcr.microsoft.com/mssql/server:2019-CU16-windowsservercore-ltsc2019
 
