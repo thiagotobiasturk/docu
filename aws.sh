@@ -6,6 +6,8 @@ netsh advfirewall firewall show rule name="SQL SERVER 2017-1444" verbose
 Test-NetConnection -ComputerName 10.0.2.15 -Port 1444
 netsh advfirewall set allprofiles state off
 
+docker pull mcr.microsoft.com/mssql/server:2019-CU16-windowsservercore-ltsc2019
+
 docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=YourStrong!Passw0rd" \
    -p 1433:1433 --name sqlserver \
    -d mcr.microsoft.com/mssql/server:2017-latest
