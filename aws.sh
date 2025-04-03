@@ -5,6 +5,8 @@ netsh advfirewall firewall show rule name=all | findstr 1444
 netsh advfirewall firewall show rule name="SQL SERVER 2017-1444" verbose
 Test-NetConnection -ComputerName 10.0.2.15 -Port 1444
 netsh advfirewall set allprofiles state off
+docker pull mcr.microsoft.com/mssql/server:2019-latest
+
 
 docker pull mcr.microsoft.com/mssql/server:2019-CU16-windowsservercore-ltsc2019
 
