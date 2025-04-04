@@ -10,6 +10,7 @@ docker pull mcr.microsoft.com/mssql/server:2019-latest
 docker exec -it sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "YourStrong!Passw0rd"
 SELECT @@VERSION;
 GO
+http://localhost:8080
 
 docker run -d -p 8080:80 --name myapp testapp
 
