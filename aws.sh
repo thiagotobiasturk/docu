@@ -13,6 +13,24 @@ GO
 
 
 
+# Usa una imagen base de Windows con PowerShell
+FROM mcr.microsoft.com/windows/servercore:ltsc2019
+
+# Copia los scripts al contenedor
+COPY download.ps1 C:/scripts/download.ps1
+COPY install-ssrs.ps1 C:/scripts/install-ssrs.ps1
+
+# Establece el directorio de trabajo
+WORKDIR C:/scripts
+
+# Ejecuta ambos scripts
+RUN powershell -ExecutionPolicy Bypass -File download.ps1 && \
+    powershell -ExecutionPolicy Bypass -File install-ssrs.ps1
+
+    Test-Path "C:\Users\Thiago\Desktop\TestingSSRS\SQLServerReportingServices"
+
+
+
 docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=1234" \
    -p 1433:1433 --name sqlserver \
    -d mcr.microsoft.com/mssql/server:2019-latest
