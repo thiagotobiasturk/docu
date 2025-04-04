@@ -11,6 +11,7 @@ docker exec -it sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "You
 SELECT @@VERSION;
 GO
 http://localhost:8080
+Get-ChildItem -Path C:\ -Recurse -Include *ReportServer*.exe -ErrorAction SilentlyContinue
 
 docker run -d -p 8080:80 --name myapp testapp
 
