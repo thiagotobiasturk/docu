@@ -11,6 +11,7 @@ docker exec -it sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "You
 SELECT @@VERSION;
 GO
 
+docker run -d -p 8080:80 --name myapp testapp
 
 
 # Usa una imagen base de Windows con PowerShell
