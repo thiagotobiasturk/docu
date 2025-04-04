@@ -28,7 +28,8 @@ RUN powershell -ExecutionPolicy Bypass -File download.ps1 && \
     powershell -ExecutionPolicy Bypass -File install-ssrs.ps1
 
     Test-Path "C:\Users\Thiago\Desktop\TestingSSRS\SQLServerReportingServices"
-
+Test-Path "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft SQL Server Reporting Services"
+True
 
 
 docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=1234" \
