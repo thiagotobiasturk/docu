@@ -36,7 +36,7 @@ Test-Path "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft SQL Se
 True
 
 
-docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=1234" \
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=StrongPassword34" \
    -p 1433:1433 --name sqlserver \
    -d mcr.microsoft.com/mssql/server:2019-latest
 
