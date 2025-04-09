@@ -8,6 +8,21 @@ netsh advfirewall set allprofiles state off
 docker pull mcr.microsoft.com/mssql/server:2019-latest
 Get-ChildItem "C:\Program Files" -Recurse -ErrorAction SilentlyContinue | Where-Object { $_.Name -like "*Reporting*" }
 
+
+# Cambia estas variables con tu información
+$serverName = "DESKTOP-5V0E01L"
+$databaseName = "ReportServer_Automatico"
+$sqlUser = "usuario_sql"
+$sqlPassword = "contraseña123"
+
+# Ruta de rsconfig.exe (ajusta la versión si usas otra)
+$rsconfigPath = "C:\Program Files\Microsoft SQL Server\150\Tools\Binn\rsconfig.exe"
+
+# Comando para configurar la conexión
+Start-Process -FilePath $rsconfigPath -ArgumentList "-c -s $serverName -d $databaseName -a SQL -u $sqlUser -p $sqlPassword" -Wait
+
+
+
 docker exec -it sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "YourStrong!Passw0rd"
 SELECT @@VERSION;
 GO
