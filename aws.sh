@@ -10,6 +10,20 @@ Get-ChildItem "C:\Program Files" -Recurse -ErrorAction SilentlyContinue | Where-
 
 criteria {
   metric_namespace = "Microsoft.Insights/components"
+  metric_name      = "availabilityResults/availabilityPercentage"
+  time_aggregation = "Count"
+  operator         = "Equals"
+  threshold        = 1
+
+  dimension {
+    name     = "Test Name"
+    operator = "Include"
+    values   = ["Accounting Api"]
+  }
+}
+
+criteria {
+  metric_namespace = "Microsoft.Insights/components"
   metric_name      = "AvailabilityPercentage"
   aggregation      = "Count"
   operator         = "Equals"
