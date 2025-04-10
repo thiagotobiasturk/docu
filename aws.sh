@@ -7,6 +7,19 @@ Test-NetConnection -ComputerName 10.0.2.15 -Port 1444
 netsh advfirewall set allprofiles state off
 docker pull mcr.microsoft.com/mssql/server:2019-latest
 Get-ChildItem "C:\Program Files" -Recurse -ErrorAction SilentlyContinue | Where-Object { $_.Name -like "*Reporting*" }
+static_criteria {
+  metric_namespace = "Microsoft.Insights/components"
+  metric_name      = "availabilityResults/availabilityPercentage"
+  aggregation      = "Count"
+  operator         = "Equals"
+  threshold        = 1
+
+  dimension {
+    name     = "Test Name"
+    operator = "Include"
+    values   = ["Accounting Api"]
+  }
+}
 
 criteria {
   metric_namespace = "Microsoft.Insights/components"
