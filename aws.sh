@@ -8,6 +8,19 @@ netsh advfirewall set allprofiles state off
 docker pull mcr.microsoft.com/mssql/server:2019-latest
 Get-ChildItem "C:\Program Files" -Recurse -ErrorAction SilentlyContinue | Where-Object { $_.Name -like "*Reporting*" }
 
+criteria {
+  metric_namespace = "Microsoft.Insights/components"
+  metric_name      = "AvailabilityPercentage"
+  aggregation      = "Count"
+  operator         = "Equals"
+  threshold        = 1  
+
+  dimension {
+    name     = "Test Name" 
+    operator = "Include"
+    values   = ["Accounting Api"]
+  }
+}
 
 # Cambia estas variables con tu información
 $serverName = "DESKTOP-5V0E01L"
