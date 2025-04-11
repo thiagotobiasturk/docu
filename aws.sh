@@ -14,6 +14,10 @@ static_criteria {
   operator         = "Equals"
   threshold        = 1
 
+output "debug_pingpcs" {
+  value = local.pcs_config.PCSRunner.PCSRuns.PingPCS
+}
+
   dimension {
     name     = "Test Name"
     operator = "Include"
