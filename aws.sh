@@ -17,7 +17,8 @@ static_criteria {
 output "debug_pingpcs" {
   value = local.pcs_config.PCSRunner.PCSRuns.PingPCS
 }
-
+ services = {
+    for service in jsondecode(file("${path.module}/appsettings.json")).MetricsProviders.PCSRunner.PCSRuns.PingPCS :
   dimension {
     name     = "Test Name"
     operator = "Include"
