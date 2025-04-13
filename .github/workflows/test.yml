@@ -9,9 +9,9 @@ on:
         default: "Thaigo"
         type: choise
         options:
-          - Thiago
-          - T
-          - Qa
+            - Thiago
+            - T
+            - Qa
   
 jobs:
   build:
