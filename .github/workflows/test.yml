@@ -23,5 +23,5 @@ jobs:
 
     - name: Install Dependencies
       run: |
-        echo "Nombre: ${{github.event.input.nombre}}"
+        echo "Nombre: ${{github.event.inputs.nombre}}"
         npm install
