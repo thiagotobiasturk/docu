@@ -2,6 +2,11 @@ name: Test
 
 on:
   workflow_dispatch:
+    inputs:
+      nombre:
+        description: "Cual es tu nombre ?"
+        required: true
+        default: "Thiago"
 
 jobs:
   build:
@@ -18,4 +23,5 @@ jobs:
 
     - name: Install Dependencies
       run: |
+        echo "Nombre: ${{github.event.input.nombre}}"
         npm install
