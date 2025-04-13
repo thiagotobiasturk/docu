@@ -22,6 +22,7 @@ jobs:
         node-version: '20'
 
     - name: Install Dependencies
+      if: ${{github.event.inputs.nombre == 'true'}}
       run: |
         echo "Nombre: ${{github.event.inputs.nombre}}"
         npm install
