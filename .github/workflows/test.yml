@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
     inputs:
       nombre:
-        description: "Cual es tu nombre ?"
+        description: "cual es tu nombre ?"
         required: true
-        default: "Thiago"
-
+        default: "Thaigo"
+  
 jobs:
   build:
     runs-on: windows-latest
@@ -22,7 +22,7 @@ jobs:
         node-version: '20'
 
     - name: Install Dependencies
-      if: ${{github.event.inputs.nombre == 'true'}}
+      if: ${{github.event.inputs.nombre == 'T'}}
       run: |
         echo "Nombre: ${{github.event.inputs.nombre}}"
         npm install
