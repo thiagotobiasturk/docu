@@ -7,6 +7,11 @@ on:
         description: "cual es tu nombre ?"
         required: true
         default: "Thaigo"
+        type: choise
+        options:
+          - Thiago
+          - T
+          - Qa
   
 jobs:
   build:
