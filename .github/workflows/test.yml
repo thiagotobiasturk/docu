@@ -7,7 +7,7 @@ on:
         description: "cual es tu nombre ?"
         required: true
         default: "Thaigo"
-        type: choise
+        type: choice
         options:
             - Thiago
             - T
