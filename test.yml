@@ -1,0 +1,65 @@
+# name: test
+
+# on:
+#   push:
+#     branches:
+#       - main
+#       - develop
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - name: Checkout Code
+#       uses: actions/checkout@v4
+
+#     - name: Setup node version
+#       uses: actions/setup-node@v2
+#       with: 
+#         node-version: '20'
+
+#     - name: install dependencies
+#       run: |
+#         npm intall
+
+#   deploy:
+#     needs: build
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - name: upload artifacts
+#       uses: actions/upload-artifact@v2
+#       with:
+#         name: folder
+#         path: path/raiz
+name: test
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Setup Node Js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '20'
+        
+    - name: Install Dependencies
+      run: |
+        npm install
+
+     - name: upload artifacts
+       uses: actions/upload-artifact@v2
+       with:
+         name: folder
+         pat: path/raiz
