@@ -28,7 +28,7 @@ jobs:
     - name: Setup Node Version
       uses: actions/setup-node@v2
       with:
-        node-version: '${{github.event.inputs.node_version}}'
+        node-version: '${{github.event.inputs.nodeversion}}'
 
 
     -  name: Check Node Version
