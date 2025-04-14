@@ -3,6 +3,14 @@ name: Test
 on:
   workflow_dispatch:
     inputs:
+      start?:
+        description: "Do you want to start this project ?"
+        required: true
+        default: "no"
+        type: choice
+        options:
+          - "no"
+          - "yes"
       node_version:
         description: "Chose Node version"
         required: true
@@ -24,6 +32,7 @@ on:
           
 jobs:
   build:
+    if: ${{guthub.event.inputs.start? == 'yes'}}
     runs-on: ${{github.event.inputs.os}} 
 
     steps:
