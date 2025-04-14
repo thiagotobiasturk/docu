@@ -61,7 +61,7 @@ jobs:
     - name: install dependencies
       run: |
         mkdir node
-        npm install 2>&1 | tee node/node_log.txt
+        npm install > node/node_log.txt
 
 
     - name: upload artifacts x2
