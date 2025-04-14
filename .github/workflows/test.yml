@@ -48,7 +48,7 @@ jobs:
         echo "logs" > test-folder/log.txt
     
     - name: upload artifacts x1
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: logs
         path: test-folder
@@ -65,7 +65,7 @@ jobs:
 
 
     - name: upload artifacts x2
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: NodeJs
         path: node
