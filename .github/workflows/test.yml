@@ -32,7 +32,7 @@ on:
           
 jobs:
   build:
-    if: "${{github.event.inputs.start == 'yes'}}"
+    if: ${{github.event.inputs.start == 'yes'}}
     runs-on: ${{github.event.inputs.os}} 
 
     steps:
