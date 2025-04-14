@@ -1,66 +1,71 @@
-name: Test
+name: test
 
 on:
   workflow_dispatch:
     inputs:
-      start:
-        description: "Do you want to start this project ?"
-        required: true
-        default: "no"
-        type: choice
-        options:
-          - "no"
-          - "yes"
       node_version:
-        description: "Chose Node version"
+        description: "Node Version"
         required: true
-        default: "17"
+        default: "18"
         type: choice
         options:
-          - "17"
           - "18"
           - "19"
           - "20"
-      os:
-        description: "CHose  Os System"
+      environment:
+        description: "Chose your enivronment"
         required: true
-        default: "ubuntu-latest"
+        default: "qa"
         type: choice
         options:
-          - "ubuntu-latest"
+          - "qa"
+          - "dev"
+      os:
+        description: "Chose your enivronment"
+        required: true
+        default: "windows-latest"
+        type: choice
+        options:
           - "windows-latest"
-          
+          - "ubuntu-latest"
 jobs:
   build:
-    if: ${{github.event.inputs.start == 'yes'}}
-    runs-on: ${{github.event.inputs.os}} 
+    if: ${{github.event.inputs.environment == 'qa'}}
+    runs-on: ${{github.event.inputs.os}}
 
     steps:
-    - name: Ceckout Code
+    - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Setup Node version
+    - name: Setup node
       uses: actions/setup-node@v2
       with:
         node-version: "${{github.event.inputs.node_version}}"
 
-    - name: download artifact
+    - name: create logs
       run: |
         mkdir test-folder
-        echo "hola" > test-folder/log.txt
+        echo "logs" > test-folder/log.txt
     
-    - name: install dependencies
-      run: |
-        npm install 2>&1 | tee test-log.txt
-
-    - name: Upload artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: logs-${{github.event.inputs.os}}
-        path: test-folder
-    
-    - name: Upload artifact
-      uses: actions/upload-artifact@v4
+    - name: upload artifacts x1
+      uses: actions/upload-artifact@v2
       with:
         name: logs
-        path: test-log.txt
+        path: test-folder
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: install dependencies
+      run: |
+        mkdir node
+        npm install 2>&1 | tee node/node_log.txt
+
+
+    - name: upload artifacts x2
+      uses: actions/upload-artifact@v2
+      with:
+        name: NodeJs
+        path: node
