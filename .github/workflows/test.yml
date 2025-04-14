@@ -38,7 +38,7 @@ jobs:
     - name: download artifact
       run: |
         mkdir test-folder
-        echo "hola" > log.txt
+        echo "hola" > test-folder/log.txt
 
 
     - name: Upload artifact
