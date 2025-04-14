@@ -3,30 +3,29 @@ name: Test
 on:
   workflow_dispatch:
     inputs:
-      nombre:
-        description: "Cual es tu nombre ?"
+      node version:
+        description: "Elige una version de Node Js"
         required: true
-        default: Thiago
+        default: "14"
         type: choice
         options:
-          - Thiago
-          - T
-          - Hola
+           - '14'
+           - '15'
+           - '16'
+           - '17'
+           - '18'
+           - '19'
+           - '20'  
+
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout Code
       uses: actions/checkout@v2
 
-    - name: Setup Node Js
+    - name: Setup Node Version
       uses: actions/setup-node@v2
       with:
-        node-version: '20'
-
-    - name: Install Dependencies
-      if: ${{github.event.inputs.nombre == 'T'}}
-      run: |
-        echo "Nombre: ${{github.event.inputs.nombre}}"
-        npm install
+        node-version: '${{github.event.inputs.node version}}'
