@@ -3,7 +3,7 @@ name: Test
 on:
   workflow_dispatch:
     inputs:
-      node version:
+      node:
         description: "Elige una version de Node Js"
         required: true
         default: "14"
@@ -28,7 +28,7 @@ jobs:
     - name: Setup Node Version
       uses: actions/setup-node@v2
       with:
-        node-version: '${{github.event.inputs.nodeversion}}'
+        node-version: '${{github.event.inputs.node}}'
 
 
     -  name: Check Node Version
