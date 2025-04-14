@@ -43,7 +43,7 @@ jobs:
         node-version: "${{github.event.inputs.node_version}}"
 
     - name: Cache node
-      uses: actions/cache@v4
+      uses: actions/cache@v3
       with:
         path: ~/.npm
         key: ${{runner.os}}-node-modules-${{hashFiles('**/package-lock.json') }}
@@ -57,7 +57,7 @@ jobs:
         echo "logs" > test-folder/log.txt
     
     - name: upload artifacts x1
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: logs
         path: test-folder
