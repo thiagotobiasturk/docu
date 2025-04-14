@@ -42,6 +42,15 @@ jobs:
       with:
         node-version: "${{github.event.inputs.node_version}}"
 
+    - name: Cache node
+      uses: actions/cache@v2
+      with:
+        path: ~/.npm
+        key: ${{runner.os}}-node-modules-${{hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{runner.os}}-node-modules-
+    
+
     - name: create logs
       run: |
         mkdir test-folder
