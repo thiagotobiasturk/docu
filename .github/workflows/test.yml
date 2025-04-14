@@ -48,10 +48,19 @@ jobs:
       run: |
         mkdir test-folder
         echo "hola" > test-folder/log.txt
-
+    
+    - name: install dependencies
+      run: |
+        npm install 2>&1 | tee test-log.txt
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
         name: logs-${{github.event.inputs.os}}
         path: test-folder
+    
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: logs
+        path: test-log.txt
