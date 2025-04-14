@@ -43,7 +43,7 @@ jobs:
         node-version: "${{github.event.inputs.node_version}}"
 
     - name: Cache node
-      uses: actions/cache@v2
+      uses: actions/cache@v4
       with:
         path: ~/.npm
         key: ${{runner.os}}-node-modules-${{hashFiles('**/package-lock.json') }}
