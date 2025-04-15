@@ -22,4 +22,13 @@ jobs:
 
     - name: http test
       run: |
-        curl -s -o /dev/null -w "%{http_code}\n" ${{github.event.inputs.url}}
+        mkdir log-folder
+        curl -s -o /dev/null -w "%{http_code}\n" ${{github.event.inputs.url}} > log-folder/log.txt
+
+    - name: upload log
+      uses: actions/upload-artifact@v4
+      with:
+        name: Logs
+        path: log-folder
+
+    
