@@ -1,0 +1,25 @@
+name: Test Http Code
+
+on: 
+  workflow_dispatch:
+    inputs:
+      url: 
+        description: "Chose an url"
+        required: true
+        default: "https://github.com/"
+        type: choice
+        options:
+          - "https://github.com/"
+          - "https://www.google.com/?hl=es"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout code
+      uses: actions/checkout@v2
+
+    - name: http test
+      run: |
+        curl -s -o /dev/null -w "%{http_code}\n" ${{github.event.inputs.url}}
