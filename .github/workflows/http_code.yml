@@ -20,7 +20,11 @@ on:
           -  "ubuntu-latest"
           -  "windows-latest"
           -  "macos-latest"
-
+      folder:
+        description: "name folder"
+        required: true
+        default: "folder"
+        
 jobs:
   test:
     runs-on: ${{github.event.inputs.os}}
@@ -37,7 +41,7 @@ jobs:
     - name: upload log
       uses: actions/upload-artifact@v4
       with:
-        name: Logs
+        name: ${{github.event.inputs.folder}}
         path: log-folder
 
     
