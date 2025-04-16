@@ -11,10 +11,19 @@ on:
         options:
           - "https://github.com/"
           - "https://www.google.com/?hl=es"
+      os:
+        description: "Os"
+        required: true
+        default: "ubuntu-latest"
+        type: choice
+        options:
+          -  "ubuntu-latest"
+          -  "windows-latest"
+          -  "macos-latest"
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ${{github.event.inputs.os}}
 
     steps:
     - name: checkout code
