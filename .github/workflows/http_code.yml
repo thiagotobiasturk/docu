@@ -24,9 +24,18 @@ on:
         description: "name folder"
         required: true
         default: "folder"
+      create_report:
+        description: "Should create report ?"
+        required: true
+        default: "yes"
+        type: choice
+        options:
+          - "yes"
+          - "no"
         
 jobs:
   test:
+    if: ${{github.event.inputs.create_report == 'yes' }}
     runs-on: ${{github.event.inputs.os}}
 
     steps:
@@ -35,8 +44,8 @@ jobs:
 
     - name: http test
       run: |
-        mkdir log-folder
-        curl -s -o /dev/null -w "%{http_code}\n" ${{github.event.inputs.url}} 2>&1 | tee log-folder/log.txt
+        mkdir folder
+        curl -s -o /dev/null -w "%{http_code}\n" ${{github.event.inputs.url}} 2>&1 | tee folder/log.txt
 
     - name: upload log
       uses: actions/upload-artifact@v4
