@@ -1,4 +1,8 @@
-data "terraform_remote_state" "app_insights" {
+KubePodInventory
+| where PodStatus == "Terminating"
+| where TimeGenerated > ago(5m)
+| summarize count() by PodName, ClusterName, Namespace, TimeGenerated
+sdata "terraform_remote_state" "app_insights" {
   backend = "azurerm"
   config = {
     resource_group_name  = "tfstate-rg"
