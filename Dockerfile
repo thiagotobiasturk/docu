@@ -1,3 +1,8 @@
+kubectl create secret docker-registry regcred \
+  --docker-server=inverstan-docker-snapshot-local.docker.fis.dev \
+  --docker-username=TU_USUARIO \
+  --docker-password=TU_CONTRASEÑA \
+  --docker-email=TU_EMAIL
 FROM debian:bullseye
 
 # Instalar ClamAV y utilidades necesarias
