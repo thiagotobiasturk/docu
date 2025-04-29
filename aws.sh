@@ -1,3 +1,14 @@
+data "terraform_remote_state" "app_insights" {
+  backend = "azurerm"
+  config = {
+    resource_group_name  = "tfstate-rg"
+    storage_account_name = "tfstateaccount"
+    container_name       = "tfstate"
+    key                  = "repoA.terraform.tfstate"  # nombre del archivo de estado
+  }
+}
+
+
 pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org PyAutoGUI
 ("xoxp-6209710763493-6236228023216-8684558229795-24d8ae58829a629d0ae9967aa74f6000")
 setup.exe /Action=Install /MediaPath="C:\SQL2017\"
