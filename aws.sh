@@ -7,6 +7,18 @@ data "terraform_remote_state" "app_insights" {
     key                  = "repoA.terraform.tfstate"  # nombre del archivo de estado
   }
 }
+variable "app_insights_scope" {
+  description = "The scope (resource ID) for the Application Insights component"
+  type        = string
+}
+scopes = [var.app_insights_scope]
+module "pcs" {
+  source = "C:/Workdir/terraform-azurerm-pcs-platform-dev"
+
+  ...
+
+  app_insights_scope = "/subscriptions/xxx/resourceGroups/yyy/providers/Microsoft.Insights/components/pcs-eastus2-dev-appinsights"
+}
 
 
 pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org PyAutoGUI
