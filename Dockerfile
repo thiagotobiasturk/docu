@@ -28,3 +28,25 @@ EXPOSE 3310
 
 # Comando por defecto (puede variar según tu uso)
 CMD ["clamd"]
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: windows-test-deployment
+  labels:
+    app: windows-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: windows-test
+  template:
+    metadata:
+      labels:
+        app: windows-test
+    spec:
+      containers:
+        - name: windows-test
+          image: inverstan-docker-snapshot-local.docker.fis.dev/windows-test:latest
+          imagePullPolicy: Always
+      imagePullSecrets:
+        - name: regcred
