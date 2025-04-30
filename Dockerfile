@@ -1,3 +1,7 @@
+locals {
+  app_insights_name  = "${local.product}-${local.resource_group_location}-${local.environment}-appinsights"
+  app_insights_scope = "/subscriptions/${var.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Insights/components/${local.app_insights_name}"
+}
 kubectl create secret docker-registry regcred \
   --docker-server=inverstan-docker-snapshot-local.docker.fis.dev \
   --docker-username=TU_USUARIO \
