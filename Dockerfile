@@ -1,4 +1,7 @@
 kubectl get pod ar-service-67f84889f9-n2qm8 -n pcs -o json | jq '.metadata.finalizers'
+kubectl get pod ar-service-67f84889f9-n2qm8 -n pcs -o json | grep finalizers -A 5
+kubectl get pod ar-service-67f84889f9-n2qm8 -n pcs -o json
+
 #!/bin/bash
 
 # Simulación del comando 'watch' en Git Bash
