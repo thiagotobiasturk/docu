@@ -1,3 +1,20 @@
+#!/bin/bash
+
+# Simulación del comando 'watch' en Git Bash
+while true; do
+  clear
+  kubectl get pods
+  sleep 2
+done
+
+chmod +x watch-kube.sh
+
+nano ~/.bashrc
+
+alias watch-kube='bash /ruta/completa/a/watch-kube.sh'
+
+source ~/.bashrc
+
 locals {
 ${data.azurerm_user_assigned_identity.aks_identity.resource_group_name}
   app_insights_name  = "${local.product}-${local.resource_group_location}-${local.environment}-appinsights"
