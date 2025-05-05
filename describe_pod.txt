@@ -1,0 +1,176 @@
+Name:             ar-service-67f84889f9-n2qm8
+Namespace:        pcs
+Priority:         0
+Service Account:  default
+Node:             akswipool000008/10.33.52.100
+Start Time:       Mon, 05 May 2025 16:24:36 -0300
+Labels:           app=ar-service
+                  pod-template-hash=67f84889f9
+Annotations:      kubectl.kubernetes.io/restartedAt: 2025-05-05T15:43:10-03:00
+Status:           Running
+IP:               192.168.4.175
+IPs:
+  IP:           192.168.4.175
+Controlled By:  ReplicaSet/ar-service-67f84889f9
+Containers:
+  ar-service:
+    Container ID:   containerd://edb5d1c45ea279debadd8ea3ad0ec1da3854bea800215431bb9a68ff15470bf2
+    Image:          investran-docker-snapshot-local.docker.fis.dev/inv-allocationrule-live:25.2.17
+    Image ID:       investran-docker-snapshot-local.docker.fis.dev/inv-allocationrule-live@sha256:8660fa4c81307798be0507792a58570e5b45aa8e33d40e6ca1dac48a237e4c78
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Mon, 05 May 2025 16:25:31 -0300
+    Ready:          True
+    Restart Count:  0
+    Limits:
+      cpu:     7
+      memory:  20Gi
+    Requests:
+      cpu:     625m
+      memory:  625m
+    Environment Variables from:
+      ar-env-file  ConfigMap  Optional: false
+    Environment:
+      InvestranDbUsername:  <set to the key 'InvestranDbUsername' in secret 'database-secret'>  Optional: false
+      InvestranDbPassword:  <set to the key 'InvestranDbPassword' in secret 'database-secret'>  Optional: false
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-gl96m (ro)
+      c:\ProgramData\Docker\secrets\InvestranDbPassword from db-secret (rw,path="InvestranDbPassword")
+      c:\ProgramData\Docker\secrets\InvestranDbUsername from db-secret (rw,path="InvestranDbUsername")
+      c:\ProgramData\Investran\Logon\Logon.ini from config (rw,path="Logon.ini")
+      c:\app\ARService-nlog.config from config (rw,path="ARService-nlog.config")
+      c:\app\Certificate.pfx from config (rw,path="Certificate.pfx")
+      c:\app\Sungard.Investran.Suite.AllocationRuleService.Service.exe.config from config (rw,path="App.config")
+      c:\app\cert-pass from config (rw,path="cert-pass")
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  logs:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     
+    SizeLimit:  <unset>
+  config:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      ar-config
+    Optional:  false
+  db-secret:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  database-secret
+    Optional:    false
+  kube-api-access-gl96m:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              application=investran
+                             kubernetes.io/os=windows
+Tolerations:                 node.kubernetes.io/memory-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  13m   default-scheduler  Successfully assigned pcs/ar-service-67f84889f9-n2qm8 to akswipool000008
+  Normal  Pulling    13m   kubelet            Pulling image "investran-docker-snapshot-local.docker.fis.dev/inv-allocationrule-live:25.2.17"
+  Normal  Pulled     13m   kubelet            Successfully pulled image "investran-docker-snapshot-local.docker.fis.dev/inv-allocationrule-live:25.2.17" in 773ms (773ms including waiting). Image size: 2426871396 bytes.
+  Normal  Created    12m   kubelet            Created container: ar-service
+  Normal  Started    12m   kubelet            Started container ar-service
+
+
+Name:             ar-service-67f84889f9-wwzvp
+Namespace:        pcs
+Priority:         0
+Service Account:  default
+Node:             akswipool000008/10.33.52.100
+Start Time:       Mon, 05 May 2025 15:43:11 -0300
+Labels:           app=ar-service
+                  pod-template-hash=67f84889f9
+Annotations:      kubectl.kubernetes.io/restartedAt: 2025-05-05T15:43:10-03:00
+Status:           Failed
+IP:               192.168.4.3
+IPs:
+  IP:           192.168.4.3
+Controlled By:  ReplicaSet/ar-service-67f84889f9
+Containers:
+  ar-service:
+    Container ID:   containerd://d738655ee6d64a2b0fc05998b6ca615a56b1ad4a346e9074879a0fef611bb0d6
+    Image:          investran-docker-snapshot-local.docker.fis.dev/inv-allocationrule-live:25.2.17
+    Image ID:       investran-docker-snapshot-local.docker.fis.dev/inv-allocationrule-live@sha256:8660fa4c81307798be0507792a58570e5b45aa8e33d40e6ca1dac48a237e4c78
+    Port:           <none>
+    Host Port:      <none>
+    State:          Terminated
+      Reason:       Error
+      Exit Code:    -1073741510
+      Started:      Mon, 05 May 2025 15:45:48 -0300
+      Finished:     Mon, 05 May 2025 16:24:35 -0300
+    Ready:          False
+    Restart Count:  0
+    Limits:
+      cpu:     7
+      memory:  20Gi
+    Requests:
+      cpu:     625m
+      memory:  625m
+    Environment Variables from:
+      ar-env-file  ConfigMap  Optional: false
+    Environment:
+      InvestranDbUsername:  <set to the key 'InvestranDbUsername' in secret 'database-secret'>  Optional: false
+      InvestranDbPassword:  <set to the key 'InvestranDbPassword' in secret 'database-secret'>  Optional: false
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-ctdzz (ro)
+      c:\ProgramData\Docker\secrets\InvestranDbPassword from db-secret (rw,path="InvestranDbPassword")
+      c:\ProgramData\Docker\secrets\InvestranDbUsername from db-secret (rw,path="InvestranDbUsername")
+      c:\ProgramData\Investran\Logon\Logon.ini from config (rw,path="Logon.ini")
+      c:\app\ARService-nlog.config from config (rw,path="ARService-nlog.config")
+      c:\app\Certificate.pfx from config (rw,path="Certificate.pfx")
+      c:\app\Sungard.Investran.Suite.AllocationRuleService.Service.exe.config from config (rw,path="App.config")
+      c:\app\cert-pass from config (rw,path="cert-pass")
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   False 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  logs:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     
+    SizeLimit:  <unset>
+  config:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      ar-config
+    Optional:  false
+  db-secret:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  database-secret
+    Optional:    false
+  kube-api-access-ctdzz:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              application=investran
+                             kubernetes.io/os=windows
+Tolerations:                 node.kubernetes.io/memory-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  55m   default-scheduler  Successfully assigned pcs/ar-service-67f84889f9-wwzvp to akswipool000008
+  Normal  Pulling    54m   kubelet            Pulling image "investran-docker-snapshot-local.docker.fis.dev/inv-allocationrule-live:25.2.17"
+  Normal  Pulled     54m   kubelet            Successfully pulled image "investran-docker-snapshot-local.docker.fis.dev/inv-allocationrule-live:25.2.17" in 1.243s (1.243s including waiting). Image size: 2426871396 bytes.
+  Normal  Created    52m   kubelet            Created container: ar-service
+  Normal  Started    52m   kubelet            Started container ar-service
+  Normal  Killing    13m   kubelet            Stopping container ar-service
