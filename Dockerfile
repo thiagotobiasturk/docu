@@ -1,3 +1,5 @@
+kubectl get pod clarity-backend-7b5d95c478-h2cqw -n lirmi-cl -o yaml
+
 kubectl get pod ar-service-67f84889f9-n2qm8 -n pcs -o json | jq '.metadata.finalizers'
 kubectl get pod ar-service-67f84889f9-n2qm8 -n pcs -o json | grep finalizers -A 5
 kubectl get pod ar-service-67f84889f9-n2qm8 -n pcs -o json
