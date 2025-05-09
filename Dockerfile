@@ -1,3 +1,5 @@
+Team please, can you help me create a PR from this branch NOMBRE_BRANCH in to TrunK?, Im not able to create one for some reason, i think i need a ticketID from Jira
+
 kubectl get pod ar-service-67f84889f9-n2qm8 -n pcs -o jsonpath="{.metadata.ownerReferences[*].name}"
 kubectl get deployment ar-service -n pcs -o yaml > ar-service-deployment.yaml
 
