@@ -1,4 +1,5 @@
-Hola Mirko! Nono, no cree ningun ticket para este cambio, tengo que crear uno por lo que veo no?, es para algo de kubernetes
+Dale! Dame un min que estoy terminando algo del antivirus, si puedo te llamo en un ratito
+wHola Mirko! Nono, no cree ningun ticket para este cambio, tengo que crear uno por lo que veo no?, es para algo de kubernetes
 Team please, can you help me create a PR from this branch NOMBRE_BRANCH in to TrunK?, Im not able to create one for some reason, i think i need a ticketID from Jira
 
 kubectl get pod ar-service-67f84889f9-n2qm8 -n pcs -o jsonpath="{.metadata.ownerReferences[*].name}"
