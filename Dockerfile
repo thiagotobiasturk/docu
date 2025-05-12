@@ -1,8 +1,18 @@
+docker run -it --name symantec-lux-container symantec-lux /bin/bash
+
 docker build -t symantec-lux .
 docker run -d --name symantec-lux-container -p 1344:1344 symantec-lux
 # Imagen base compatible con RedHat
 FROM almalinux:9
 
+# Instalar dependencias necesarias
+RUN yum install -y \
+    sharutils \
+    glibc \
+    initscripts \
+    libuuid \
+    libuuid.i686 \
+    && yum clean all
 # Variables de entorno para evitar preguntas interactivas
 ENV APP_TYPE=NAS \
     MACH_TYPE=x86_64
