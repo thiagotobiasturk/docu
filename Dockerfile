@@ -1,4 +1,10 @@
-# Usa una imagen base de Windows Server Core
+Hola Marian, como estas? 
+Lo del antivirus le dije a Sergio, ahora pongo por el chat donde estamos todos, no puedo bajar la app con ese link que mando:
+PONER_SCREEN_DONDE_FALLA_QUE_MANDE_A_SERGIO
+Y lo del PR en un rato tengo una reu con Esteban para ver eso y mergearlo de una vez, si estas libre podemos verlo sino, igual tengo a las 15 un check con Esteban y lo ibamos a ver ahiHola Marian, como estas? 
+Lo del antivirus le dije a Sergio, ahora pongo por el chat donde estamos todos, no puedo bajar la app con ese link que mando:
+PONER_SCREEN_DONDE_FALLA_QUE_MANDE_A_SERGIO
+Y lo del PR en un rato tengo una reu con Esteban para ver eso y mergearlo de una vez, si estas libre podemos verlo sino, igual tengo a las 15 un check con Esteban y lo ibamos a ver ahi# Usa una imagen base de Windows Server Core
 FROM mcr.microsoft.com/windows/servercore:ltsc2022
 
 # Establece el directorio de trabajo dentro del contenedor
