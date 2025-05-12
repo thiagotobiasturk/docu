@@ -1,3 +1,5 @@
+docker build -t symantec-lux .
+docker run -d --name symantec-lux-container -p 1344:1344 symantec-lux
 # Imagen base compatible con RedHat
 FROM almalinux:9
 
