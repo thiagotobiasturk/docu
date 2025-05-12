@@ -1,3 +1,20 @@
+# Usa una imagen base de Windows Server Core
+FROM mcr.microsoft.com/windows/servercore:ltsc2022
+
+# Establece el directorio de trabajo dentro del contenedor
+WORKDIR C:\app
+
+# Copia el contenido de la carpeta actual (donde está tu app) al contenedor
+COPY . .
+
+# (Opcional) Expón un puerto si tu app lo necesita
+# EXPOSE 8080
+
+# (Opcional) Define el comando para iniciar tu aplicación
+# Por ejemplo, si es una app .exe:
+# CMD ["C:\\app\\mi_app.exe"]
+
+
 Dale! Dame un min que estoy terminando algo del antivirus, si puedo te llamo en un ratito
 wHola Mirko! Nono, no cree ningun ticket para este cambio, tengo que crear uno por lo que veo no?, es para algo de kubernetes
 Team please, can you help me create a PR from this branch NOMBRE_BRANCH in to TrunK?, Im not able to create one for some reason, i think i need a ticketID from Jira
