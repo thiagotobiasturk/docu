@@ -1,3 +1,26 @@
+# Imagen base compatible con RedHat
+FROM almalinux:9
+
+# Variables de entorno para evitar preguntas interactivas
+ENV APP_TYPE=NAS \
+    MACH_TYPE=x86_64
+
+# Copiar los archivos del instalador al contenedor
+COPY RedHat/SymantecProtectionEngine.sh /opt/SymantecProtectionEngine.sh
+
+# Dar permisos de ejecución al script
+RUN chmod +x /opt/SymantecProtectionEngine.sh
+
+# Ejecutar el script de instalación (automatizando respuestas con yes)
+RUN yes | /opt/SymantecProtectionEngine.sh
+
+# Exponer el puerto que use el motor (por ejemplo, 1344 para ICAP si aplica)
+EXPOSE 1344
+
+# Definir el entrypoint si el motor tiene un binario para ejecutarse
+CMD ["/opt/Symantec/ProtectionEngine/sbin/spe-start"]
+
+
 Hola Marian, como estas? 
 Lo del antivirus le dije a Sergio, ahora pongo por el chat donde estamos todos, no puedo bajar la app con ese link que mando:
 PONER_SCREEN_DONDE_FALLA_QUE_MANDE_A_SERGIO
