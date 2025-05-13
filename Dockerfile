@@ -1,3 +1,8 @@
+# Descargar e instalar sharutils manualmente (desde CentOS 7 repo)
+RUN curl -O http://mirror.centos.org/centos/7/os/x86_64/Packages/sharutils-4.13.3-8.el7.x86_64.rpm && \
+    rpm -i sharutils-4.13.3-8.el7.x86_64.rpm && \
+    rm sharutils-4.13.3-8.el7.x86_64.rpm
+
 FROM centos:7
 
 # Instalar paquetes necesarios para SPE
