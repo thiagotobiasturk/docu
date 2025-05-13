@@ -1,3 +1,21 @@
+https://ftp.gnu.org/gnu/sharutils/sharutils-4.15.2.tar.xz
+
+
+# 1. Descargar el código fuente
+curl -LO https://ftp.gnu.org/gnu/sharutils/sharutils-4.15.2.tar.xz
+
+# 2. Extraer
+tar -xf sharutils-4.15.2.tar.xz
+cd sharutils-4.15.2
+
+# 3. Instalar dependencias de compilación
+dnf install -y gcc make automake autoconf gettext-devel
+
+# 4. Configurar, compilar e instalar
+./configure
+make
+make install
+
 curl -O http://vault.centos.org/7.9.2009/os/x86_64/Packages/sharutils-4.13.3-8.el7.x86_64.rpm
 # Descargar e instalar sharutils manualmente (desde CentOS 7 repo)
 RUN curl -O http://mirror.centos.org/centos/7/os/x86_64/Packages/sharutils-4.13.3-8.el7.x86_64.rpm && \
