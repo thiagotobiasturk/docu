@@ -1,31 +1,61 @@
-RUN wget http://mirror.centos.org/centos/7/os/x86_64/Packages/sharutils-4.13.3-8.el7.x86_64.rpm \
-    && rpm -i sharutils-4.13.3-8.el7.x86_64.rpm
+FROM centos:7
 
-# Usar imagen base Debian Bullseye
-FROM debian:bullseye
-
-# Instalar paquetes necesarios
-RUN apt-get update && apt-get install -y \
+# Instalar paquetes necesarios para SPE
+RUN yum install -y \
+    sharutils \
+    glibc \
+    initscripts \
+    libuuid \
     unzip \
     wget \
     bash \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    && yum clean all
 
-# Definir versión como variable de entorno (opcional)
+# Variable de entorno opcional para versión
 ENV SPE_VERSION=9.2.1.7
 
-# Copiar el archivo comprimido al contenedor
+# Copiar el ZIP de instalación de Symantec al contenedor
 COPY Linux.zip /tmp/Linux.zip
 
-# Extraer e instalar Symantec Protection Engine
+# Extraer e instalar SPE
 RUN unzip /tmp/Linux.zip -d /tmp/ \
     && chmod +x /tmp/SPE_NAS/Symantec_Protection_Engine/RedHat/SymantecProtectionEngine.sh \
     && /bin/bash /tmp/SPE_NAS/Symantec_Protection_Engine/RedHat/SymantecProtectionEngine.sh
 
-# Exponer puertos necesarios (ajustá si corresponde)
+# Exponer los puertos que SPE usa por defecto
 EXPOSE 8004 8005
-SHELL ["/bin/bash", "-c"]
+
+# Arranca en bash para pruebas
+CMD ["bash"]
+
+# RUN wget http://mirror.centos.org/centos/7/os/x86_64/Packages/sharutils-4.13.3-8.el7.x86_64.rpm \
+#     && rpm -i sharutils-4.13.3-8.el7.x86_64.rpm
+
+# # Usar imagen base Debian Bullseye
+# FROM debian:bullseye
+
+# # Instalar paquetes necesarios
+# RUN apt-get update && apt-get install -y \
+#     unzip \
+#     wget \
+#     bash \
+#     && apt-get clean \
+#     && rm -rf /var/lib/apt/lists/*
+
+# # Definir versión como variable de entorno (opcional)
+# ENV SPE_VERSION=9.2.1.7
+
+# # Copiar el archivo comprimido al contenedor
+# COPY Linux.zip /tmp/Linux.zip
+
+# # Extraer e instalar Symantec Protection Engine
+# RUN unzip /tmp/Linux.zip -d /tmp/ \
+#     && chmod +x /tmp/SPE_NAS/Symantec_Protection_Engine/RedHat/SymantecProtectionEngine.sh \
+#     && /bin/bash /tmp/SPE_NAS/Symantec_Protection_Engine/RedHat/SymantecProtectionEngine.sh
+
+# # Exponer puertos necesarios (ajustá si corresponde)
+# EXPOSE 8004 8005
+# SHELL ["/bin/bash", "-c"]
 
 # Entrypoint si querés ejecutar el motor directamente
 # ENTRYPOINT ["/opt/SymantecProtectionEngine/bin/spe"]
