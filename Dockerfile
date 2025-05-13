@@ -1,3 +1,6 @@
+RUN wget http://mirror.centos.org/centos/7/os/x86_64/Packages/sharutils-4.13.3-8.el7.x86_64.rpm \
+    && rpm -i sharutils-4.13.3-8.el7.x86_64.rpm
+
 # Usar imagen base Debian Bullseye
 FROM debian:bullseye
 
