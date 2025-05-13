@@ -18,10 +18,11 @@ COPY Linux.zip /tmp/Linux.zip
 # Extraer e instalar Symantec Protection Engine
 RUN unzip /tmp/Linux.zip -d /tmp/ \
     && chmod +x /tmp/SPE_NAS/Symantec_Protection_Engine/RedHat/SymantecProtectionEngine.sh \
-    && bash /tmp/SPE_NAS/Symantec_Protection_Engine/RedHat/SymantecProtectionEngine.sh
+    && /bin/bash /tmp/SPE_NAS/Symantec_Protection_Engine/RedHat/SymantecProtectionEngine.sh
 
 # Exponer puertos necesarios (ajustá si corresponde)
 EXPOSE 8004 8005
+SHELL ["/bin/bash", "-c"]
 
 # Entrypoint si querés ejecutar el motor directamente
 # ENTRYPOINT ["/opt/SymantecProtectionEngine/bin/spe"]
