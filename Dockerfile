@@ -180,3 +180,4 @@ CMD ["bash"]
 #           imagePullPolicy: Always
 #       imagePullSecrets:
 #         - name: regcred
+Buen dia Marian!, dale excelente, dame un toque y si podes en 30 min nos juntamos, podes?
