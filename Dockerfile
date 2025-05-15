@@ -1,6 +1,7 @@
 curl -o eicar.com.txt https://www.eicar.org/download/eicar.com.txt
 /opt/SYMCScanEngine/bin/ssecls -a /ruta/al/archivo/eicar.com.txt
 ssecls -a eicar.com.txt
+find / -name ssecls 2>/dev/null
 
 https://ftp.gnu.org/gnu/sharutils/sharutils-4.15.2.tar.xz
 
