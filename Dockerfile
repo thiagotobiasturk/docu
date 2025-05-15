@@ -1,3 +1,5 @@
+echo 'X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*' > test.com.txt
+
 curl -o eicar.com.txt https://www.eicar.org/download/eicar.com.txt
 /opt/SYMCScanEngine/bin/ssecls -a /ruta/al/archivo/eicar.com.txt
 ssecls -a eicar.com.txt
