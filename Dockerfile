@@ -1,3 +1,19 @@
+#!/bin/bash
+
+bash /tmp/SymantecProtectionEngine.sh <<EOF
+yes
+/opt/SymantecProtectionEngine
+8004
+8005
+yes
+EOF
+
+
+COPY SymantecProtectionEngine.sh /tmp/SymantecProtectionEngine.sh
+COPY silent_installer.sh /tmp/silent_installer.sh
+RUN chmod +x /tmp/silent_installer.sh
+RUN /tmp/silent_installer.sh
+
 echo 'X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*' > test.com.txt
 
 curl -o eicar.com.txt https://www.eicar.org/download/eicar.com.txt
