@@ -1,3 +1,5 @@
+/opt/SYMScan/bin/symcscan -config /opt/SYMScan/bin -daemon
+
 /opt/Symantec/ssecls/ssecls \
 -server "127.0.0.1:1344:0:false" \
 -scantype F \
