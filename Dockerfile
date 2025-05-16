@@ -1,3 +1,9 @@
+/opt/Symantec/ssecls/ssecls \
+-server "127.0.0.1:1344:0:false" \
+-scantype F \
+-mode scan \
+-verbose \
+/tmp/eicar.txt
 #!/bin/bash
 
 bash /tmp/SymantecProtectionEngine.sh <<EOF
