@@ -3,6 +3,31 @@
 LOG_FILE="/opt/SYMCScan/logs/spe.log"
 
 while true; do
+  echo "=== Starting new scan ==="
+
+  if [ -f /test.txt ]; then
+    /opt/SYMCScan/symcscan -s /test.txt
+  else
+    echo "File /test.txt not found. Skipping scan."
+  fi
+
+  # Wait for the log file to be generated
+  echo "Waiting for the log to be generated: $LOG_FILE"
+  while [ ! -f "$LOG_FILE" ]; do
+    sleep 2
+  done
+
+  echo "Log file detected. Showing last lines..."
+  tail -n 10 "$LOG_FILE"
+
+  echo "Waiting 10 minutes before the next scan..."
+  sleep 600 # 600 seconds = 10 minutes
+done
+#!/bin/bash
+
+LOG_FILE="/opt/SYMCScan/logs/spe.log"
+
+while true; do
   echo "=== Iniciando nuevo escaneo ==="
 
   if [ -f /test.txt ]; then
