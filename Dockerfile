@@ -1,3 +1,14 @@
+#!/bin/bash
+
+# Espera a que el log esté disponible
+echo "Esperando a que se genere el archivo de log..."
+while [ ! -f /opt/SYMCScan/logs/spe.log ]; do
+  sleep 2
+done
+
+echo "Archivo de log encontrado. Mostrando logs:"
+tail -f /opt/SYMCScan/logs/spe.log
+
 CMD ["tail", "-f", "/opt/SYMCScan/logs/spe.log"]
 export SYMANTEC_LICENSE_PATH=/opt/SYMScan/lic
 
