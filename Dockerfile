@@ -1,3 +1,4 @@
+CMD ["tail", "-f", "/opt/SYMCScan/logs/spe.log"]
 export SYMANTEC_LICENSE_PATH=/opt/SYMScan/lic
 
 /opt/SYMScan/bin/symcscan -config /opt/SYMScan/bin -daemon
