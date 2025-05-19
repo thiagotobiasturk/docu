@@ -1,5 +1,30 @@
 #!/bin/bash
 
+LOG_FILE="/opt/SYMCScan/logs/spe.log"
+
+while true; do
+  echo "=== Iniciando nuevo escaneo ==="
+
+  if [ -f /test.txt ]; then
+    /opt/SYMCScan/symcscan -s /test.txt
+  else
+    echo "Archivo /test.txt no encontrado. Se omitirá el escaneo."
+  fi
+
+  # Espera a que se genere el archivo de log
+  echo "Esperando que se genere el log: $LOG_FILE"
+  while [ ! -f "$LOG_FILE" ]; do
+    sleep 2
+  done
+
+  echo "Archivo de log detectado. Mostrando últimas líneas..."
+  tail -n 10 "$LOG_FILE"
+
+  echo "Esperando 10 minutos para el próximo escaneo..."
+  sleep 600 # 600 segundos = 10 minutos
+done
+#!/bin/bash
+
 echo "Ejecutando prueba antivirus..."
 
 # Ejecutar escaneo de prueba (modifica la ruta del archivo si es necesario)
