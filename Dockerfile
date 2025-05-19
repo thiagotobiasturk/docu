@@ -1,3 +1,7 @@
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+CMD ["/entrypoint.sh"]
 #!/bin/bash
 
 # Espera a que el log esté disponible
