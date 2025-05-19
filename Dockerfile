@@ -1,3 +1,24 @@
+#!/bin/bash
+
+echo "Ejecutando prueba antivirus..."
+
+# Ejecutar escaneo de prueba (modifica la ruta del archivo si es necesario)
+if [ -f /test.txt ]; then
+  /opt/SYMCScan/symcscan -s /test.txt
+else
+  echo "Archivo /test.txt no encontrado. Se omitirá el escaneo."
+fi
+
+# Espera a que el log se cree
+LOG_FILE="/opt/SYMCScan/logs/spe.log"
+echo "Esperando que se genere el archivo de log: $LOG_FILE"
+while [ ! -f "$LOG_FILE" ]; do
+  sleep 2
+done
+
+echo "Archivo de log detectado. Mostrando logs..."
+tail -f "$LOG_FILE"
+
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
