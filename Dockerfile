@@ -1,3 +1,4 @@
+Strong communication skills, teamwork and adaptability. Comfortable collaborating in multicultural teams and contributing to a positive work environment. Open to feedback and proactive in resolving conflicts constructively.
 https://thiago-turk.itch.io/proyectunity
 Team, tomorrow ill be a bit late on the morning because i have a fathers meeting on the kinder of my kids. Ill be back at 11:30 aprox (GMT -3).
 Thanks
