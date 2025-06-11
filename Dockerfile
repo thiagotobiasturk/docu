@@ -1,3 +1,9 @@
+# Actualiza el repositorio de Node.js a la versión que quieras (por ejemplo, 20.x)
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+
+# Reinstala Node.js desde el nuevo repositorio
+sudo apt install -y nodejs
+
 Detail-oriented and capable of managing multiple tasks simultaneously. Skilled in time management, prioritization, and following structured workflows. Familiar with agile methodologies and version control tools to maintain organized and traceable development processes.
 
 Strong communication skills, teamwork and adaptability. Comfortable collaborating in multicultural teams and contributing to a positive work environment. Open to feedback and proactive in resolving conflicts constructively.
