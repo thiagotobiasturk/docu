@@ -1,3 +1,7 @@
+Scenario: Muestra mensajes de error progresivos tras una o dos fallas del proceso
+Given que el usuario se encuentra en la pantalla "Cuadro de Marcha"
+And si el proceso arroja algún código de error "Intentelo nuevamente" 
+Then en la segunda respuesta de error, "Comuniquese con el representante de BBVA"
 # Actualiza el repositorio de Node.js a la versión que quieras (por ejemplo, 20.x)
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 
