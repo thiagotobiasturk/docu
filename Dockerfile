@@ -1,3 +1,7 @@
+Scneario: Muestra pantalla "En espera" si el proceso excede los 3 segundos
+Given que el usuario se encuentra en la pantalla "Cuadro de Marcha"
+And el proceso excede los 3 segundos
+Then se debe mostrar la pantalla "En espera"
 Scenario: Muestra mensajes de error progresivos tras una o dos fallas del proceso
 Given que el usuario se encuentra en la pantalla "Cuadro de Marcha"
 And si el proceso arroja algún código de error "Intentelo nuevamente" 
