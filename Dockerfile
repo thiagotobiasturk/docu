@@ -1,3 +1,4 @@
+https://meet.google.com/gdq-ezhw-xqx
 Scenario: Usuario accede a Cuadro de Marcha al hacer clic en "Continuar" en Cotización de seguro
 Given que el usuario se encuentra en la pantalla de Cotización de seguro
 When ha completado los datos para calcular la Cotización de seguro
