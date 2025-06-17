@@ -1,3 +1,88 @@
+Feature: Validación de domicilio particular
+
+Scenario: Mostrar mensaje si el domicilio es distinto al del DNI
+  Given el usuario desmarca el checkbox "Domicilio igual al del DNI"
+  Then el sistema debe solicitar al vendedor un comprobante de servicio
+    And se debe generar un requisito "SERVICIO" en el Legajo Digital
+
+Scenario: Autocompletado de Provincia y Localidad por CP
+  Given el usuario ingresa un Código Postal
+  Then el sistema debe autocompletar Provincia y Localidad filtrando por CP
+
+Scenario: Validación de campos Calle y Número
+  Given el usuario comienza a escribir el nombre de la calle
+  When ingresa al menos 3 letras
+  Then debe mostrarse un desplegable con opciones de calles de esa localidad
+    And debe autocompletarse al presionar Enter
+    And el desplegable debe ajustar el ancho al contenido más largo
+
+Scenario: Validación de Piso y Departamento
+  Given el usuario completa los datos de calle y número
+  Then puede ingresar un piso de hasta 2 dígitos
+    And puede ingresar un departamento con letras o dígitos
+
+
+
+Feature: Carga de datos de Caja de Ahorro
+
+Scenario: Mostrar cuentas existentes si elige cuenta existente
+  Given el usuario marca la opción "Cuenta existente"
+  Then se deben mostrar en un desplegable todas las cuentas habilitadas
+    And solo deben ser de tipo "Caja de Ahorro"
+
+Scenario: Mostrar sucursales si elige nueva cuenta
+  Given el usuario marca la opción "Cuenta nueva"
+  Then debe visualizar un desplegable con las sucursales disponibles
+    And debe poder seleccionar una
+    And debe visualizar un link de ayuda a un buscador de sucursales
+
+Feature: Carga de datos del vehículo
+
+Scenario: Validar campos si el vehículo es usado
+  Given el usuario selecciona "Vehículo usado"
+  Then debe completar los campos:
+    | Campo       | Formato                                 |
+    | Patente     | AA123BB (sin letras I y O)              |
+    | Motor nro.  | 17 dígitos alfanuméricos                |
+    | Chasis nro. | 17 dígitos alfanuméricos (sin I, O, Q)  |
+
+Scenario: Validar campos si el vehículo es nuevo
+  Given el usuario selecciona "Vehículo nuevo"
+  Then debe completar los campos:
+    | Campo       | Formato                                 |
+    | Motor nro.  | 17 dígitos alfanuméricos                |
+    | Chasis nro. | 17 dígitos alfanuméricos (sin I, O, Q)  |
+
+Feature: Carga de datos complementarios
+
+Scenario: Validar selección de campo PEP
+  Given el usuario está en la sección de Datos Complementarios
+  Then debe visualizar el campo "¿Es PEP?" con opciones Sí o No
+    And por defecto debe estar en "No"
+
+
+Feature: Autodeclaración de individuos
+
+Scenario: Validar campo Sujeto Obligado
+  Given el usuario está en la sección de Autodeclaración
+  Then debe visualizar el campo "Sujeto Obligado" con opciones Sí o No
+    And por defecto debe estar en "No"
+
+Scenario: Mostrar campo Presentó constancia solo si es Sujeto Obligado
+  Given el usuario selecciona "Sí" en "Sujeto Obligado"
+  Then debe habilitarse el campo "¿Presentó constancia?"
+    And debe ser obligatorio y por defecto estar en "No"
+
+Scenario: Ocultar campo Presentó constancia si no es Sujeto Obligado
+  Given el usuario selecciona "No" en "Sujeto Obligado"
+  Then el campo "¿Presentó constancia?" no debe estar visible ni habilitado
+
+
+
+
+
+
+
 1.1 Datos Personales del Titular 
 
  
