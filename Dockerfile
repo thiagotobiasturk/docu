@@ -1,3 +1,102 @@
+1.1 Datos Personales del Titular 
+
+ 
+
+Estado Civil → campo mandatorio, desplegable, por default queda soltero, sino con opciones:  casado/a, viudo/a, divorciado/a, conviviente.
+ 
+
+→ Si el titular es casado debe desplegarse un combo para la carga de 4 datos del cónyuge: 
+
+ 
+
+Nombre: campo mandatorio, editable. Admite más de un nombre.
+Apellido: campo mandatorio, editable. Admite más de un apellido.
+Tipo:  campo mandatorio, no editable. Solo incluye DNI.
+Número de Documento:  campo mandatorio y numérico, con un máximo de 8 dígitos. Si el número a ingresar es de 7 caracteres, el sistema deberá asumir que el primer carácter es = 0 (cero). La numeración con que empieza el documento indican si es DNI o DNE. Validar que la numeración mayor a 90 millones corresponde a DNE.
+ 
+
+País de nacimiento → este dato viene de pantalla de inicio. 
+ 
+
+Identificación Fiscal o Tributaria → campo numérico y mandatorio, desplegable con opción de  CUIL o CDI y a continuación número de máximo 11 dígitos, separados por guiones los 2 primeros del último.
+ 
+
+Teléfono celular→ campo mandatorio y editable. Colocar código de área (hasta 4 dígitos) +  número del celular (hasta 8 dígitos). 
+ 
+
+Email→ campo que se va a autocompletar cuando se cargue el e-mail en la pantalla de simulación, con @ en el medio. Hasta 50 caracteres. 
+ 
+
+1.2 Domicilio Particular 
+
+Debe existir un checkbox donde tildar si el domicilio real es igual o distinto al que tiene descripto en el DNI. 
+
+Si el domicilio difiere deberá dar aviso al vendedor que debe solicitar un servicio de luz, gas, teléfono o algún servicio que demuestre domicilio real.
+
+El sistema creará automáticamente un requisito en el Legajo Digital “SERVICIO”.
+
+Los campos no se deberán poder modificar.
+
+Provincia→ se autocompleta de acuerdo al CP que se cargó previamente. Campo mandatorio, desplegable. Se muestran las de Argentina.
+Localidad→ se autocompleta de acuerdo al CP que se cargó previamente. Campo mandatorio, desplegable. Se muestran filtradas de acuerdo a la provincia.
+Calle y número→ campo mandatorio, con desplegable: uno para el nombre de la calle, otro para el número y otros dos para: piso y departamento.  Se valida contra el CP. El desplegable (la lista de opciones que aparece al escribir) debe ajustar su ancho al contenido más largo de las opciones, de forma que no se corte ninguna.
+-->Ingresando las tres primeras letras de la calle, nos debe mostrar todas las calles con esas letras de esa localidad y completar el nombre entero al ejecutar "Enter". 
+
+-->Se debe además cargar la numeración de la calle como texto e ingreso de dígitos. 
+
+-->Si es departamento, colocar piso con máximo de 2 dígitos y departamento en dígitos o letras. 
+
+ 
+
+1.3 Datos Caja de Ahorro
+
+Checkbox: nueva o existente
+Si es existente:
+
+Se deben mostrar todas las cuentas abiertas y habilitadas que tiene el cliente en un desplegable.
+
+Número de Caja de ahorro→ campo desplegable, que muestra los números de cuenta de caja de ahorro, e incluyen el número de sucursales habilitadas que tiene el cliente. No puede ser cuenta corriente.
+Si es nueva:
+
+Se deben mostrar:
+
+Número de Sucursal→ campo desplegable, scrolear y que muestra los números de sucursales habilitadas y el nombre de la misma para que el nuevo cliente elija donde quiere que le abran la cuenta. (Agregar un link de ayuda a un buscador de sucursales).
+ 
+
+1.4 Datos del vehículo (ya sea auto/moto/camión)
+
+ 
+
+Si es usado se deben mostrar: 
+
+1.Patente→ campo mandatorio y editable, con formato de: dos letras (A-Z, excluyendo I y O), tres números (0-9), dos letras (A-Z, excluyendo I y O).
+
+2.Motor nro.→ campo mandatorio y editable, compuesto por 17 dígitos alfanuméricos. 
+
+3.Chasis nro.→ campo mandatorio y editable, compuesto por 17 dígitos alfanuméricos. No usa las letras I, O y Q para evitar confusiones con los números 1, 0 y 6. 
+
+ 
+
+Si es nuevo  se deben mostrar: 
+
+1.Motor nro.→ campo mandatorio y editable, compuesto por 17 dígitos alfanuméricos. 
+
+2.Chasis nro.→ campo mandatorio y editable, compuesto por 17 dígitos alfanuméricos. No usa las letras I, O y Q para evitar confusiones con los números 1, 0 y 6. 
+
+ 
+
+1.6 Datos Complementarios 
+
+Se deberá visualizar la pregunta ¿Es PEP? –> campo mandatorio y con opción Sí o No. Por default queda en No.
+
+ 
+
+1.7 Autodeclaración Individuos
+
+Que se visualice Sujeto Obligado→ campo mandatorio y con opción Sí o No. Por default queda en No.
+
+Se deberá visualizar la pregunta ¿Presentó constancia?→ campo mandatorio y con opción Sí o No. Debe habilitarse solo si es sujeto obligado. Por default queda en No.
+
 https://meet.google.com/gdq-ezhw-xqx
 Scenario: Usuario accede a Cuadro de Marcha al hacer clic en "Continuar" en Cotización de seguro
 Given que el usuario se encuentra en la pantalla de Cotización de seguro
