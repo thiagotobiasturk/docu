@@ -1,3 +1,34 @@
+La pantalla debe mostrar debajo del header, los links de descarga de formularios, que deberán estar ordenados en dos columnas: una titulada “nombre” y otra “acción” (la acción siempre es la misma → descargar). Todos los archivos deberán descargarse en formato PDF.
+Se deberán visualizar todos los formularios que se detallan a continuación. Se mostrará una solicitud de tasa fija o UVA, dependiendo de la oferta comercial que eligió el cliente en la pantalla de ofertas disponibles.
+Solicitud de Préstamos Prendario y Caja de Ahorro en pesos (Tasa fija) o Solicitud de Préstamos Prendario UVA y Caja de Ahorro en pesos (UVA)
+Solicitud de Seguro Automotor
+Información Comercial
+Coberturas BBVA 122016 (dejar el link de descarga actualizado)
+      3. Luego de descargar los formularios correspondientes, el vendedor al ejecutar continuar será redirigido a la pantalla de Legajo Digital.
+
+ Scenario: Visualizar formularios por Nombre y Accion
+Given que el usuario se encuentra en la pantalla de Descarga de formularios
+Then debajo del Header se debe visualizar los formularios ordenados en dos columnas por Nombre y 
+Accion:
+| Nombre                                                                 | Accion          |
+| Solicitud de Préstamos Prendario y Caja de Ahorro en pesos (Tasa fija) | Descargar       |
+o Solicitud de Préstamos Prendario UVA y Caja de Ahorro en pesos (UVA)
+| Solicitud de Seguro Automotor                                          | Descargar       | 
+| Información Comercial                                                  | Descargar       |
+| Coberturas BBVA 122016 (dejar el link de descarga actualizado)         | Descargar       |
+When el usuario descarga los formularios                                 
+Then los formularios deben estar en formato PDF
+
+Scenario: Usuario es redirigido a la pantalla de Legajo Digital
+Given que el usuario se encuentra en la pantalla de Descarga de formularios
+And Ah visualizado y descargado los formularios
+When hace clic en "Continuar"
+Then el sistema debe redirigir al usuario a la pantalla de "Legajo Digital"
+
+
+
+
+
 Scenario: Selección del tipo de cotitular y asignación automática del estado civil
 Given que el usuario se encuentra en la pantalla "Datos adicionales del cotitular"
 When selecciona el "Tipo de Cotitular"
