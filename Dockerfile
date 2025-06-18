@@ -1,3 +1,37 @@
+Scenario: Selección del tipo de cotitular y asignación automática del estado civil
+Given que el usuario se encuentra en la pantalla "Datos adicionales del cotitular"
+When selecciona el "Tipo de Cotitular"
+  | Opción    |
+  | Cónyuge   |
+  | Cotitular |
+Then si selecciona "Cónyuge", el estado civil debe asignarse automáticamente como "Casado"
+And si selecciona "Cotitular", el estado civil debe copiar el valor de los "Datos adicionales del titular"
+
+
+
+Scenario: Visualización y carga de campos obligatorios del cotitular
+Given que el usuario se encuentra en la pantalla "Datos adicionales del cotitular"
+Then debe visualizar y completar los siguientes campos:
+  | Campo                           | Tipo            | Observaciones                                             |
+  | País de nacimiento              | Autocompletado  | Ídem datos del titular                                    |
+  | Identificación Fiscal o Tributaria | Desplegable + numérico | CUIL o CDI, 11 dígitos, con guiones                |
+  | Condición ante IVA             | Desplegable     | Opciones excluyentes: Resp Inscripto, Exento, etc.        |
+  | Email                           | Autocompletado  | Ídem datos del titular, hasta 50 caracteres               |
+  | Teléfono celular                | Editable        | Código de área (hasta 4) + número (hasta 8 dígitos)       |
+
+
+Scenario: Visualización del campo ¿Es PEP? en datos complementarios del cotitular
+Given que el usuario se encuentra en la pantalla "Datos adicionales del cotitular"
+Then debe visualizar la pregunta "¿Es PEP?" con las opciones "Sí" o "No"
+And por defecto debe estar seleccionada la opción "No"
+
+
+Scenario: Visualización de campos de autodeclaración del cotitular
+Given que el usuario se encuentra en la pantalla "Datos adicionales del cotitular"
+Then debe visualizar la pregunta "¿Es sujeto obligado?" con opciones "Sí" o "No" (por defecto "No")
+And si selecciona "Sí", debe habilitarse el campo "¿Presentó constancia?" con opciones "Sí" o "No" (por defecto "No")
+And debe visualizar el campo "Rol del firmante" como obligatorio con opciones "Cotitular" o "Cónyuge"
+
 2.1 Datos Cotitular 
 
  
