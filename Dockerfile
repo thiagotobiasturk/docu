@@ -1,3 +1,56 @@
+2.1 Datos Cotitular 
+
+ 
+
+Tipo de Cotitular→ campo mandatorio y desplegable con opción: cónyuge o cotitular.
+ 
+
+-->Si es cónyuge, el estado civil por default es casado.
+
+-->Si es cotitular, el estado civil es ídem DATOS ADICIONALES TITULAR
+
+ 
+
+País de nacimiento → Ídem DATOS ADICIONALES TITULAR
+ 
+
+Identificación Fiscal o Tributaria →  Ídem DATOS ADICIONALES TITULAR
+ 
+
+Condición ante IVA→  campo mandatorio, desplegable con opción excluyente:  Resp Inscripto/Exento/No respons/Consumidor/Resp Monotributo/Ingresos Brutos Nro (Provincia)/Pequeño Contr Eventual.
+ 
+
+Email→  Ídem DATOS ADICIONALES TITULAR
+ 
+
+Teléfono celular→  Ídem DATOS ADICIONALES TITULAR
+ 
+
+2.2 Datos Complementarios 
+
+Se deberá visualizar la pregunta ¿Es PEP? –>Ídem DATOS ADICIONALES TITULAR
+
+ 
+
+2.3 Autodeclaración Individuos
+
+Que se visualice Sujeto Obligado→ Ídem DATOS ADICIONALES TITULAR
+
+Se deberá visualizar la pregunta ¿Presentó constancia?→Ídem DATOS ADICIONALES TITULAR
+
+Rol del firmante→ campo mandatorio y con opción Cotitular o Cónyuge.
+
+
+
+
+
+
+
+
+
+
+
+
 Feature: Validación de domicilio particular
 
 Scenario: Mostrar mensaje si el domicilio es distinto al del DNI
