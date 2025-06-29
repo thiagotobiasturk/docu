@@ -1,3 +1,28 @@
+Título del bug:
+Navegación con flechas del navegador permite volver a la aplicación sin estar autenticado
+
+Descripción:
+Luego de iniciar sesión en BBVA Prendarios y acceder a la pantalla principal de concesionarios, si el usuario utiliza la flecha de "atrás" del navegador, es redirigido correctamente a la pantalla de login. Sin embargo, si posteriormente presiona la flecha de "adelante" del navegador, puede volver a la pantalla de concesionarios sin necesidad de haberse autenticado nuevamente.
+
+Este comportamiento representa un problema de seguridad, ya que permite acceder a partes de la aplicación sin una sesión activa.
+
+Pasos para reproducir:
+
+Iniciar sesión en BBVA Prendarios con credenciales válidas.
+
+Acceder a la pantalla de concesionarios.
+
+Presionar la flecha "atrás" del navegador → el sistema redirige al login (esperado).
+
+Presionar la flecha "adelante" del navegador → el sistema permite el acceso a concesionarios sin necesidad de login (no esperado).
+
+Resultado esperado:
+Al presionar la flecha "adelante", el sistema debería verificar si hay una sesión activa. Si no la hay, debería mantenerse en la pantalla de login.
+
+Resultado actual:
+El sistema permite el acceso a la pantalla de concesionarios sin autenticación al usar la navegación del navegador.
+
+
 La pantalla debe mostrar debajo del header, los links de descarga de formularios, que deberán estar ordenados en dos columnas: una titulada “nombre” y otra “acción” (la acción siempre es la misma → descargar). Todos los archivos deberán descargarse en formato PDF.
 Se deberán visualizar todos los formularios que se detallan a continuación. Se mostrará una solicitud de tasa fija o UVA, dependiendo de la oferta comercial que eligió el cliente en la pantalla de ofertas disponibles.
 Solicitud de Préstamos Prendario y Caja de Ahorro en pesos (Tasa fija) o Solicitud de Préstamos Prendario UVA y Caja de Ahorro en pesos (UVA)
