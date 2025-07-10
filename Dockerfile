@@ -1,3 +1,19 @@
+resource "azurerm_resource_group" "mi_grupo" {
+  name     = "rg-lirmi-qa"
+  location = "South Central US"
+}
+
+resource "azurerm_logic_app_workflow" "enviar_mensaje" {
+  name                = "enviar-a-slack"
+  location            = azurerm_resource_group.mi_grupo.location
+  resource_group_name = azurerm_resource_group.mi_grupo.name
+
+  definition = file("${path.module}/mi-logicapp.json")
+  parameters = {}
+}
+
+
+
 Título del bug:
 Navegación con flechas del navegador permite volver a la aplicación sin estar autenticado
 
