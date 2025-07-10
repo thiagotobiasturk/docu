@@ -1,3 +1,29 @@
+{
+  "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+  "contentVersion": "1.0.0.0",
+  "triggers": {
+    "manual": {
+      "type": "Request",
+      "kind": "Http",
+      "inputs": {
+        "schema": {}
+      }
+    }
+  },
+  "actions": {
+    "respuesta": {
+      "type": "Response",
+      "inputs": {
+        "statusCode": 200,
+        "body": {
+          "mensaje": "Hola desde mi Logic App en Terraform!"
+        }
+      }
+    }
+  },
+  "outputs": {}
+}
+
 resource "azurerm_resource_group" "mi_grupo" {
   name     = "rg-lirmi-qa"
   location = "South Central US"
