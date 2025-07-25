@@ -1,3 +1,15 @@
+A test was carried out by forcing CPU usage on a pod (acc-api-...) to validate the functionality of the alert system configured in Azure Monitor.
+
+The container's CPU usage was intentionally increased to exceed the defined threshold.
+
+This triggered the corresponding alert.
+
+The alert appeared as "Fired" in the Azure history.
+
+Once the pod was deleted, the alert automatically changed to "Resolved", confirming that the monitoring system responds dynamically to the existence of the pod.
+
+
+
 {
   "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
   "contentVersion": "1.0.0.0",
